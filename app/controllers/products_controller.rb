@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   
   def index
     @products = @product_category.products.includes(:default_image, :product_categories, :variants).root.active.page(params[:page]).per(6)
+    @page_num = params[:page]
   end
 
   def compare
@@ -30,6 +31,14 @@ class ProductsController < ApplicationController
     @attributes = @product.product_attributes.publicly_accessible.to_a
     @comment = Comment.new
     @comments = Comment.where(:product_id => @product.id).reverse_order
+    cat = Shoppe::ProductCategorization.where(:product_id => @product.id).first.product_category
+    @similars ||= []
+    cat.products.first(4).each do |prod|
+      if prod != @product
+        @similars << prod
+      end
+    end
+    @similars = @similars.first(3)
   end
   
   def add_to_basket

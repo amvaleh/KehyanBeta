@@ -1,13 +1,6 @@
-<div class="well wow animated  zoomIn">
-
-  <p class="empty">
-    <b>
       دسته بندی ها
-    </b>
-  </p>
     <% for category in Shoppe::ProductCategory.without_parent.order('created_at DESC')  %>
           <%= link_to category.name, products_path(category.permalink) %>
-          <%= nested_product_category_rows(category) %>
+          <%= nice_nested_product_category_rows(category) %>
           <br>
     <% end %>
-</div>

@@ -1,0 +1,149 @@
+<div class="col-md-12 box-block">
+  <div class="box-content">
+    <div class="single-product">
+      <div class="images col-md-4 col-sm-12 col-xs-12">
+        <div class="big-image col-md-12 col-sm-12 col-xs-12">
+          <% if product.default_image %>
+              <%= image_tag product.default_image.path  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="product-details col-md-8 col-sm-12 col-xs-12">
+      <div class="title">
+        <h1 class="farsi">
+          <%= link_to product.name, product_path(product.product_category.permalink, product.permalink) %>
+        </h1>
+        <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i>
+                <span>
+                  این کالا
+                  <% @comments = Comment.where(:product_id => product.id).reverse_order %>
+                  <%= @comments.count %>
+                  نظر دارد
+                  <!--<a href="#a">Add Review</a>-->
+                </span>
+        </div>
+      </div>
+      <!-- end: Title and rating info -->
+
+      <div class="row">
+        <!-- Availability, Product Code, Brand and short info -->
+        <div class="short-info-wr col-md-12 col-sm-12 col-xs-12">
+          <div class="short-info">
+            <div class="product-attr-text">
+              <!--Availability:-->
+              <% if product.in_stock? %>
+                  <span class="available">موجود </span>
+              <% else %>
+                    <span class="notavailable">
+                      موجود نیست
+                    </span>
+              <% end %>
+            </div>
+
+            <div class="product-attr-text">
+              دسته بندی
+              <% cat = Shoppe::ProductCategorization.where(:product_id => product.id).first.product_category %>
+              <%=link_to cat.name , products_path(cat.permalink), style: "color: black !important;" %>
+            </div>
+            <p class="short-info-p">
+              <%= product.short_description %>
+            </p>
+
+            <p class="short-info-p">
+
+              <%= product.description %>
+            </p>
+
+          </div>
+        </div>
+        <!-- end: Availability, Product Code, Brand and short info -->
+      </div>
+      <div class="row">
+        <div class="short-info-opt-wr col-md-8 col-sm-8 col-xs-12">
+          <div class="short-info-opt">
+            <div class="att-row">
+              <div class="qty-wr">
+                <%= form_tag buy_product_path(product.product_category.permalink, product.permalink), :class => (product.in_stock? ? 'in-stock' : 'no-stock') do %>
+
+                    <div class="qty-text hidden-xs">
+                      تعداد:
+                    </div>
+                    <div class="quantity-inp">
+                      <!--<input type="text" class="quantity-input" name="p_quantity" value="1">-->
+                      <%= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !product.in_stock? ,:class=> "quantity-input" , :style=> "width: 50px;height: 35px;
+background: darkturquoise;
+color: white;" %>
+
+                    </div>
+                    <!--<div class="quantity-txt"><a href="#a" class="qty qtyminus"><i class="fa fa-minus fa-fw"></i></a></div>-->
+                    <!--<div class="quantity-txt"><a href="#a" class="qty qtyplus"><i class="fa fa-plus fa-fw"></i></a></div>-->
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="price-wr col-md-4 col-sm-4 col-xs-12">
+                      <div class="price">
+                              <span class="price-new">
+                                <%= number_to_currency product.price %>
+                              </span>
+                      </div>
+
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="price-wr col-md-4 col-sm-4 col-xs-12">
+                        <div class="product-btns">
+                          <div class="product-big-btns">
+                            <!--<button class="btn btn-addtocart">-->
+                            <!--</button>-->
+                            <% if product.in_stock? %>
+                                <%= button_tag(type: "submit", class: "btn btn-addtocart") do %>
+                                    اضافه به سبد خرید
+                                    <i class="fa fa-shopping-cart"></i>
+                                <% end %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-btns-wr col-md-8 col-sm-8 col-xs-12">
+                        <div class="product-btns">
+                          <div class="product-big-btns">
+
+                <% end %>
+
+
+                <% @attributes = product.product_attributes.publicly_accessible.to_a %>
+
+                <div class="table-responsive">
+                  <% unless @attributes.empty? %>
+                      <table class="table table-stripper">
+                        <%for attribute in @attributes %>
+                            <tr>
+                              <th class="black_color">
+                                <%= attribute.key %> :
+                              </th>
+                              <td>
+                                <%= link_to attribute.value, product_filter_path(:key => attribute.key, :value => attribute.value), class: "black_color"%>
+                              </td>
+                            </tr>
+                        <% end %>
+                      </table>
+                  <% end %>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+    <!-- end: product details -->
+  </div>
+  <!-- end: single product -->
+</div>
+
+

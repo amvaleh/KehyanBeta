@@ -1,0 +1,35 @@
+<%if has_order? && current_order.has_items? %>
+    <% for item in order.order_items %>
+        <div class="qc-row qc-row-item">
+          <span class="qc-col-qty">
+                          <%= item.quantity%>
+            </span>
+          <% prod = Shoppe::Product.find(item.ordered_item_id) %>
+          <span class="qc-col-name">
+       <%= link_to item.ordered_item.full_name ,
+                   product_path(prod.product_category.permalink, prod.permalink) %>
+    </span>
+          <span class="qc-col-price">
+            <%= number_to_currency item.total %>
+          </span>
+          <span class="qc-col-remove">
+          <%= link_to(remove_basket_item_path(item), :method => :delete) do %>
+              <i class="fa fa-times fa-fw"></i>
+          <% end %>
+            </span>
+        </div>
+    <% end %>
+    <div class="qc-row qc-row-item">
+      <div class="qc-row-bottom">
+        <%=link_to "سبد خرید من", basket_path , :class => 'btn qc-btn-viewcart' %><%= link_to "پرداخت", checkout_path, :class => 'btn qc-btn-checkout' %>
+      </div>
+    </div>
+
+<% else %>
+    <div class="qc-row-bottom">
+      <small>
+        سبد خرید شما خالی است
+      </small>
+    </div>
+<% end %>
+

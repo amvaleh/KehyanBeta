@@ -1,0 +1,895 @@
+<% active_nav_item :home %>
+<% @page_title = 'Ghasedak' %>
+<%#= render 'shared/product_list', :products => @products.includes(:default_image)%>
+<!--=paginate @products-->
+<!---#, :theme => "bootstrap3"-->
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 menu-col">
+      <div class="menu-heading">
+        <a href="index.html">
+          <i class="fa fa-home fa-fw"></i>
+صفحه اصلی
+        </a>
+      </div>
+      <!-- Mega Menu -->
+      <div class="menu3dmega vertical responsive skin-blue-dark" id="menuMega"><div class="menuToggle">Menu <span style="float: right;">☰</span></div>
+        <ul>
+          <!-- Menu Item Links for Mobiles Only -->
+          <li class="visible-xs first"> <a href="index.html"> <i class="fa fa-home"></i> <span>بيت</span> <i class="fa fa-angle-right"></i> </a>
+            <div class="dropdown-menu flyout-menu">
+              <!-- Sub Menu -->
+              <ul>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="blog.html">بلوق</a></li>
+                <li> <a href="#a"><span>حساب</span> <i class="fa fa-caret-right"></i> </a>
+                  <ul class="dropdown-menu sub flyout-menu">
+                    <li><a href="#a">تسجيل الدخول / تسجيل</a></li>
+                    <li><a href="#a">طلباتي</a></li>
+                    <li><a href="#a">قائمة أمنيات</a></li>
+                    <li><a href="cart.html">سلة التسوق</a></li>
+                    <li><a href="checkout.html">الخروج</a></li>
+                  </ul>
+                </li>
+                <li> <a href="#a"><span>نتاج</span> <i class="fa fa-caret-right"></i> </a>
+                  <ul class="dropdown-menu sub flyout-menu">
+                    <li><a href="category-grid.html">فئة الشبكة</a></li>
+                    <li><a href="category-list.html">قائمة الفئة</a></li>
+                    <li><a href="product.html">منتج الصفحة</a> </li>
+                  </ul>
+                </li>
+                <li><a href="cart.html">للتسوق السلة</a></li>
+                <li><a href="checkout.html">الخروج</a></li>
+                <li><a href="blog-single.html">بلوق وظيفة</a></li>
+                <li><a href="contact.html">الاتصال بنا</a></li>
+              </ul>
+              <!-- end: Sub Menu -->
+            </div>
+          </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item for Tablets and Computers Only-->
+          <li class="hidden-xs"> <a href="#a"> <i class="fa fa-files-o"></i> <span>صفحات</span> <i class="fa fa-angle-right"></i> </a>
+            <div class="dropdown-menu flyout-menu" style="z-index: 1; display: none; -webkit-animation: 150ms ease both;">
+              <!-- Sub Menu -->
+              <ul>
+                <li><a href="index.html">بيت</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="blog.html">بلوق</a></li>
+                <li><a href="blog-single.html">بلوق وظيفة</a></li>
+                <li> <a href="#a"><span>نتاج</span> <i class="fa fa-caret-right"></i> </a>
+                  <ul class="dropdown-menu sub flyout-menu">
+                    <li><a href="category-grid.html">فئة الشبكة</a></li>
+                    <li><a href="category-list.html">قائمة الفئة</a></li>
+                    <li><a href="product.html">منتج الصفحة</a> </li>
+                  </ul>
+                </li>
+                <li><a href="cart.html">للتسوق السلة</a></li>
+                <li><a href="checkout.html">الخروج</a></li>
+                <li><a href="contact.html">الاتصال بنا</a></li>
+              </ul>
+              <!-- end: Sub Menu -->
+            </div>
+          </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li> <a href="#a"> <i class="fa fa-male"></i> <span>الرجال ارتداء</span> <i class="fa fa-angle-right"></i> </a>
+            <div class="dropdown-menu" style="z-index: 1; display: none; -webkit-animation: 150ms ease both;">
+              <!-- Sub Menu -->
+              <div class="content">
+                <div class="row">
+                  <div class="col-md-4"> <a class="menu-title" href="#a">موضة</a>
+                    <ul>
+                      <li><a href="#a">Clothing</a></li>
+                      <li><a href="#a">Shoes</a></li>
+                      <li><a href="#a">حقيبة يدs</a></li>
+                      <li><a href="#a">Accessories</a></li>
+                      <li><a href="#a">Luggage</a></li>
+                      <li><a href="#a">Jewelry</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4"> <a class="menu-title" href="#a">قمصان</a>
+                    <ul>
+                      <li><a href="#a">Reguler Shirts</a></li>
+                      <li><a href="#a">Slim Shirts</a></li>
+                      <li><a href="#a">Fashion Shirts</a></li>
+                      <li><a href="#a">Black Shirts</a></li>
+                      <li><a href="#a">White Shirts</a></li>
+                      <li><a href="#a">Gray Shirts</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4"> <a class="menu-title" href="#a">جينز</a>
+                    <ul>
+                      <li><a href="#a">Reguler Jeans</a></li>
+                      <li><a href="#a">Slim-fit Jeans</a></li>
+                      <li><a href="#a">Loose Jeans</a></li>
+                      <li><a href="#a">Top Jeans</a></li>
+                      <li><a href="#a">New Jeans</a></li>
+                      <li><a href="#a">Color Jeans</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p> <a href="#a"><img alt="" src="assets/menu-ad.jpg"></a> </p>
+                  </div>
+                </div>
+              </div>
+              <!-- end: Sub Menu -->
+            </div>
+          </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li> <a href="#a"> <i class="fa fa-female"></i> <span>ملابس النساء</span> <i class="fa fa-angle-right"></i> </a>
+            <div class="dropdown-menu" style="z-index: 1; display: none; -webkit-animation: 150ms ease both;">
+              <!-- Sub Menu -->
+              <div class="content">
+                <div class="row">
+                  <div class="col-md-5"> <a class="menu-title" href="#a">موضة</a>
+                    <ul>
+                      <li><a href="#a">Clothing</a></li>
+                      <li><a href="#a">Shoes</a></li>
+                      <li><a href="#a">حقيبة يدs</a></li>
+                      <li><a href="#a">Accessories</a></li>
+                      <li><a href="#a">Luggage</a></li>
+                      <li><a href="#a">Jewelry</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="product-block">
+                      <div class="image">
+                        <div class="product-label product-sale"><span>بيع</span></div>
+                        <a class="img" href="product.html">
+                          <%= image_tag "product1.jpg" %>
+                        </a>
+                      </div>
+                      <div class="product-meta">
+                        <div class="name"><a href="product.html">السيدات حقيبة يد أنيقة</a></div>
+                        <div class="big-price"> <span class="price-new"><span class="sym">$</span>96</span> <span class="price-old"><span class="sym">$</span>119.50</span> </div>
+                        <div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">معاينة</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>
+                        <div class="small-price"> <span class="price-new"><span class="sym">$</span>96</span> <span class="price-old"><span class="sym">$</span>119.50</span> </div>
+                        <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i> </div>
+                        <div class="small-btns">
+                          <button class="btn btn-default btn-compare pull-left" data-toggle="tooltip" title="" data-original-title="إضافة إلى المقارنة"> <i class="fa fa-retweet fa-fw"></i> </button>
+                          <button class="btn btn-default btn-wishlist pull-left" data-toggle="tooltip" title="" data-original-title="اضف الى قائمة الامنيات"> <i class="fa fa-heart fa-fw"></i> </button>
+                          <button class="btn btn-default btn-addtocart pull-left" data-toggle="tooltip" title="" data-original-title="إضافة إلى العربة"> <i class="fa fa-shopping-cart fa-fw"></i> </button>
+                        </div>
+                      </div>
+                      <div class="meta-back"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end: Sub Menu -->
+            </div>
+          </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li> <a href="#a"> <i class="fa fa-video-camera"></i> <span>كاميرا رقمية</span></a> </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li> <a href="#a"> <i class="fa fa-mobile"></i> <span>الهواتف النقالة</span></a> </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li> <a href="#a"> <i class="fa fa-laptop"></i> <span>أجهزة الكمبيوتر</span></a> </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li> <a href="#a"> <i class="fa fa-gamepad"></i> <span>Gaming</span></a> </li>
+          <!-- end: Menu Item -->
+          <!-- Menu Item -->
+          <li class="last"> <a href="#a"> <i class="fa fa-gift"></i> <span>Gift Ideas</span></a> </li>
+          <!-- end: Menu Item -->
+        </ul>
+      </div>
+      <!-- end: Mega Menu -->
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 menu-col-2">
+      <!-- Navigation Buttons/Quick Cart for Tablets and Desktop Only -->
+      <div class="menu-links hidden-xs">
+        <ul class="nav nav-pills nav-justified">
+          <li class="dropdown">
+            <a href="cart.html">
+              <i class="fa fa-shopping-cart fa-fw"></i>
+              <span class="hidden-sm"> <%=current_order.total_items%> کالا | <%=current_order.total_before_tax%> </span>
+            </a>
+            <!-- Quick Cart -->
+            <div class="dropdown-menu quick-cart" style="display: none;">
+
+              <div class="qc-row qc-row-heading"> <span class="qc-col-qty">تعداد</span>
+               <span class="qc-col-name">
+               <%=current_order.total_items%> کالا در سبد خرید
+               </span>
+                <span class="qc-col-price">
+<%=current_order.total_before_tax%>
+                </span> </div>
+              <%= render 'shared/basket' , :order => current_order %>
+            </div>
+            <!-- end: Quick Cart -->
+          </li>
+          <li class="dropdown">
+            <a href="cart.html">
+              <i class="fa fa-book fa-fw"></i>
+              <span class="hidden-sm">
+                مقایسه
+              </span>
+            </a>
+            <!-- Quick Cart -->
+            <div class="dropdown-menu quick-cart" style="display: none;">
+
+              <div class="qc-row qc-row-heading">
+                <span class="qc-col-qty">
+لیست
+                </span>
+               <span class="qc-col-name">
+                 مقایسه
+               </span>
+                <span class="qc-col-price">
+                  شما
+                </span>
+              </div>
+              <div class="compare">
+              <%= render 'shared/compare' %>
+              </div>
+            </div>
+            <!-- end: Quick Cart -->
+          </li>
+          <li> <a href="about.html"> <i class="fa fa-info-circle fa-fw"></i> <span class="hidden-sm">درباره ما</span></a> </li>
+          <li> <a href="blog.html"> <i class="fa fa-bullhorn fa-instagram"></i> <span class="hidden-sm">اینستاگرام</span></a> </li>
+          <li> <a href="contact.html"> <i class="fa fa-pencil-square-o fa-fw"></i> <span class="hidden-sm ">تماس با ما</span></a> </li>
+          <!--<li> <a href="index.html"> <i class="fa fa-home fa-fw"></i> <span class="hidden-sm">صحفه اصلی</span></a> </li>-->
+
+
+
+        </ul>
+      </div>
+      <!-- end: Navigation Buttons/Quick Cart Tablets and large screens Only -->
+      <!-- Top Searches for tablets and large screens -->
+      <div class="top-searchs hidden-xs">
+      <span class="title">
+      <small>
+        دسته بندی ها رو بگرد کتاب مورد علاقت رو پیدا کن  با چند کلیک سفارش بده، در خونه تحویل بگیر
+
+      </small>
+   </span>
+    <span class="links"> 
+       <!-- <a href="#a"> -->
+       <!-- أحذية الهواء الاردن 2010 -->
+       <!-- </a> | <a href="#a"> -->
+       <!-- ليز كليبورن -->
+       <!-- </a> |  -->
+      </span>
+      </div>
+      <!-- end: Top Searches -->
+
+      <!-- Quick Help for tablets and large screens -->
+      <div class="quick-message hidden-xs">
+        <div class="quick-box">
+          <div class="quick-slide"><span class="title">راهنمایی</span>
+            <div class="quickbox slide" id="quickbox">
+              <div class="carousel-inner">
+                <div class="item"> <a href="#a"> <i class="fa fa-envelope fa-fw"></i>ایمیل</a> </div>
+                <div class="item"> <a href="#a"> <i class="fa fa-question-circle fa-fw"></i>همین الان زنگ بزن </a> </div>
+                <div class="item active"> <a href="#a"> <i class="fa fa-phone fa-fw"></i> 66177260 </a> </div>
+              </div>
+            </div>
+            <a class="left carousel-control" data-slide="prev" href="#quickbox"> <i class="fa fa-angle-left fa-fw"></i> </a> <a class="right carousel-control" data-slide="next" href="#quickbox"> <i class="fa fa-angle-right fa-fw"></i> </a> </div>
+        </div>
+      </div>
+      <!-- end: Quick Help -->
+
+      <div class="clearfix"></div>
+      <!-- Iview Slider -->
+      <div class="slider">
+        <div id="iview" class="" style="height: 406px;">
+
+          <!-- Slide 1 -->
+          <div data-iview:image="images/slide0.jpg" data-iview:pausetime="60000" style="width: 867px; height: 406px;">
+            <div class="iview-caption metro-box1 orange" data-transition="wipeUp" data-x="95" data-y="209" style="opacity: 1; top: 209px; left: 95px; width: 163px; height: 163px;">
+              <div class="caption-contain" style="opacity: 1; position: relative; width: 163px; height: 163px; top: 0px; left: 0px;">
+                <a href="about.html">
+              <div class="box-hover"></div>
+              <i class="fa fa-comment-o fa-fw"></i>
+                  <span>
+                    درباره ما
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="iview-caption metro-box1 bg-green" data-transition="wipeUp" data-x="266" data-y="209" style="opacity: 1; top: 209px; left: 266px; width: 163px; height: 163px;">
+              <div class="caption-contain" style="opacity: 1; position: relative; width: 163px; height: 163px; top: 0px; left: 0px;">
+                <a href="#a">
+              <div class="box-hover"></div>
+              <i class="fa fa-truck fa-fw"></i> <span>ارسال رایگان</span></a> </div></div>
+            <div class="iview-caption metro-box2" data-transition="expandLeft" data-x="438" data-y="209" style="opacity: 1; top: 209px; left: 438px; width: 335px; height: 163px;"><div class="caption-contain" style="opacity: 1; position: relative; width: 335px; height: 163px; top: 0px; left: 0px;">
+              <div class="monthlydeals">
+                <div class="monthly-deals slide" id="monthly-deals">
+                  <div class="carousel-inner">
+                    <div class="item"> <a href="#a"> <img alt="" src="assets/slider-deal1.jpg"> </a> </div>
+                    <div class="item"> <a href="#a"> <img alt="" src="assets/slider-deal2.jpg"> </a> </div>
+                    <div class="item active"> <a href="#a"> <img alt="" src="assets/slider-deal3.jpg"> </a> </div>
+                    <div class="item"> <a href="#a"> <img alt="" src="assets/slider-deal4.jpg"> </a> </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" data-slide="prev" href="#monthly-deals">
+                  <i class="fa fa-angle-left fa-fw"></i>
+                </a>
+                <a class="right carousel-control" data-slide="next" href="#monthly-deals">
+                  <i class="fa fa-angle-right fa-fw"></i>
+                </a>
+              </div>
+              <!--  <span>Deals of the month</span> -->
+            </div>
+            </div>
+            <div class="iview-caption metro-box1 purple" data-transition="wipeDown" data-x="438" data-y="37" style="opacity: 1; top: 37px; left: 438px; width: 163px; height: 163px;"><div class="caption-contain" style="opacity: 1; position: relative; width: 163px; height: 163px; top: 0px; left: 0px;"> <a href="#a">
+              <div class="box-hover"></div>
+              <i class="fa fa-trophy fa-fw"></i> <span>
+              متوسطه اول
+            </span></a>
+            </div>
+            </div>
+            <div class="iview-caption metro-box1 bg-teal" data-transition="wipeDown" data-x="610" data-y="37" style="opacity: 1; top: 37px; left: 610px; width: 163px; height: 163px;"><div class="caption-contain" style="opacity: 1; position: relative; width: 163px; height: 163px; top: 0px; left: 0px;"> <a href="#a">
+              <div class="box-hover"></div>
+              <i class="fa fa-trophy fa-fw"></i> <span>
+              متوسطه دوم
+            </span></a> </div></div>
+            <div class="iview-caption metro-heading" data-transition="expandLeft" data-x="95" data-y="40" style="opacity: 1; top: 40px; left: 95px; width: 330px; height: 95px;">
+              <div class="caption-contain " style="opacity: 1; position: relative; width: 330px; height: 95px; top: 0px; left: 0px;">
+              <h1 class="farsi">
+                بانک کتاب قاصدک
+              </h1>
+            </div>
+            </div>
+            <div class="iview-caption metro-heading" data-transition="wipeLeft" data-x="95" data-y="100" style="opacity: 1; top: 100px; left: 95px; width: 330px; height: 80px;">
+              <div class="caption-contain" style="opacity: 1; position: relative; width: 330px; height: 80px; top: 0px; left: 0px;">
+                <span class="farsi">
+                  اولین بانک کتاب ارايه دهنده تخفیف و ارسال رایگان.
+                  <br>
+                <!--<a href="#a">read more</a>-->
+              </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div data-iview:image="assets/slide1.jpg" style="width: 867px; height: 406px; display: none;">
+            <div class="iview-caption caption1" data-transition="wipeUp" data-x="100" data-y="10" style="opacity: 1; top: 10px; left: 100px; width: 200px; height: 142px;">
+              <div class="caption-contain" style="opacity: 1; position: relative; width: 200px; height: 142px; top: 0px; left: 0px;">10%</div>
+            </div>
+            <div class="iview-caption caption2" data-easing="easeInOutElastic" data-transition="wipeLeft" data-x="100" data-y="140" style="opacity: 1; top: 140px; left: 100px; width: 290px; height: 57px;">
+              <div class="caption-contain" style="opacity: 1; position: relative; width: 290px; height: 57px; top: 0px; left: 0px;">
+              تخفیف ویژه
+              </div>
+            </div>
+            <div class="iview-caption caption3" data-easing="easeInOutElastic" data-transition="wipeLeft" data-x="100" data-y="200" style="opacity: 1; top: 200px; left: 100px; width: 354px; height: 36px;"><div class="caption-contain" style="opacity: 1; position: relative; width: 354px; height: 36px; top: 0px; left: 0px;">
+            هر چه بیشتر خرید کنید
+              با طرح های تخفیفی ما <br>
+              کمتر هزینه خواهید کرد</div>
+              </div>
+
+            <!--<div class="iview-caption btn-more" data-transition="fade" data-x="100" data-y="280" style="opacity: 1; top: 280px; left: 100px; width: 142px; height: 50px;">-->
+              <!--<div class="caption-contain" style="opacity: 1; position: relative; width: 142px; height: 50px; top: 0px; left: 0px;">-->
+<!---->
+              <!--<%= link_to "بیشتر بدانید" , "#" %>-->
+            <!--</div>-->
+            <!--</div>-->
+
+          </div>
+          <!-- Slide 3 -->
+          <div data-iview:image="assets/slide2.jpg" style="width: 867px; height: 406px; display: none;">
+            <div class="iview-caption caption3 btm-bar" data-height="107px" data-transition="expandRight" data-width="867px" data-x="0" data-y="300" style="opacity: 1; top: 300px; left: 0px; width: 867px; height: 107px;"><div class="caption-contain" style="opacity: 1; position: relative; width: 867px; height: 107px; top: 0px; left: 0px;">
+              <h1><b>Metro style slider</b> bottom caption!</h1>
+              <p>Energistically enable enabled vortals for cross-unit niche markets.
+                Professionally leverage existing visionary customer service with virtual
+                collaboration and idea-sharing. Distinctively foster ethical content
+                whereas future-proof applications.</p>
+            </div></div>
+          </div>
+
+
+
+          <!--************************************************************************************************-->
+          <!--<div id="iview-timer" class="" title="Pause" style="display: block; opacity: 0.9; width: 26px; height: 26px; top: 10px; left: 10px;">-->
+          <!--</div>-->
+
+
+          <div class="iview-directionNav" style="opacity: 0.6;">
+            <a class="iview-prevNav" title="Previous">
+              <i class="fa fa-arrow-circle-left fa-fw"></i></a>
+            <a class="iview-nextNav" title="Next">
+              <i class="fa fa-arrow-circle-right fa-fw"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row clearfix f-space30"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 main-column box-block">
+      <div class="box-heading">
+        <span>
+          محصولات برتر
+        </span></div>
+      <div class="box-content">
+        <div class="box-products slide" id="productc1">
+          <div class="carousel-controls">
+            <a class="carousel-control left" data-slide="prev" href="#productc1">
+              <i class="fa fa-angle-left fa-fw"></i>
+            </a>
+            <a class="carousel-control right" data-slide="next" href="#productc1">
+              <i class="fa fa-angle-right fa-fw"></i>
+            </a>
+          </div>
+          <div class="carousel-inner">
+            <!-- Items Row -->
+            <div class="item active">
+
+              <div class="row box-product">
+
+                <% x = Shoppe::Product.active.featured.includes(:default_image, :product_categories, :variants).root.limit(3) %>
+                <% puts x.size %>
+                <%= render 'shared/product_list', :products => x.includes(:default_image) %>
+              </div>
+            </div>
+
+            <!-- end: Items Row -->
+
+            <!-- Items Row -->
+            <div class="item">
+              <div class="row box-product">
+                <% y = Shoppe::Product.active.featured.includes(:default_image, :product_categories,:variants).order('id desc').limit(3) %>
+                <%= render 'shared/product_list', :products => y.includes(:default_image) %>
+              </div>
+            </div>
+            <!-- end: Items Row -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 box-block sidebar">
+      <div class="box-heading">
+        <span>
+          شرایط تخفیف
+        </span>
+      </div>
+      <div class="box-content">
+        <div class="box-products slide carousel-fade" id="productc2">
+          <ol class="carousel-indicators">
+            <li class="active" data-slide-to="0" data-target="#productc2"></li>
+            <li class="" data-slide-to="1" data-target="#productc2"></li>
+            <li class="" data-slide-to="2" data-target="#productc2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <!-- item -->
+            <div class="item active">
+              <div class="product-block">
+                <div class="image">
+                  <div class="product-label product-hot">
+                    <span>
+                      <!--خرید-->
+                    </span></div>
+                  <a class="img" href="#">
+                    <img alt="product info" src="assets/product1.jpg" title="product title">
+                  </a>
+                </div>
+                <div class="product-meta">
+                  <div class="name">
+                    <a href="#">
+
+                    </a>
+                  </div>
+                  <div class="big-price"> <span class="price-new"><span class="sym">$</span>96</span> </div>
+                  <div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">رأي</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>
+                </div>
+                <div class="meta-back"></div>
+              </div>
+            </div>
+            <!-- end: item -->
+            <!-- item -->
+            <div class="item">
+              <div class="product-block">
+                <div class="image"> <a class="img" href="product.html"><img alt="product info" src="product2.jpg" title="product title"></a> </div>
+                <div class="product-meta">
+                  <div class="name"><a href="product.html">شرائط أنيق حقيبة يد</a></div>
+                  <div class="big-price"> <span class="price-new"><span class="sym">$</span>654.87</span> </div>
+                  <div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">رأي</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>
+                </div>
+                <div class="meta-back"></div>
+              </div>
+            </div>
+            <!-- end: item -->
+            <!-- item -->
+            <div class="item">
+              <div class="product-block">
+                <div class="image"> <a class="img" href="product.html"><img alt="product info" src="product3.jpg" title="product title"></a> </div>
+                <div class="product-meta">
+                  <div class="name"><a href="product.html">أنيق حقيبة يد</a></div>
+                  <div class="big-price"> <span class="price-new"><span class="sym">$</span>1600</span> </div>
+                  <div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">رأي</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>
+                </div>
+                <div class="meta-back"></div>
+              </div>
+            </div>
+            <!-- end: item -->
+          </div>
+        </div>
+        <div class="carousel-controls"> <a class="carousel-control left" data-slide="prev" href="#productc2"> <i class="fa fa-angle-left fa-fw"></i> </a> <a class="carousel-control right" data-slide="next" href="#productc2"> <i class="fa fa-angle-right fa-fw"></i> </a> </div>
+        <div class="nav-bg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row clearfix f-space30"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-column box-block">
+      <div class="box-heading"><span>
+        محصولات جدید
+      </span>
+      </div>
+      <div class="box-content">
+        <div class="box-products slide" id="productc3">
+          <div class="carousel-controls"> <a class="carousel-control left" data-slide="prev" href="#productc3"> <i class="fa fa-angle-left fa-fw"></i> </a> <a class="carousel-control right" data-slide="next" href="#productc3"> <i class="fa fa-angle-right fa-fw"></i> </a> </div>
+          <div class="carousel-inner">
+            <!-- Items Row -->
+            <div class="item active">
+              <div class="row box-product">
+                <% x = Shoppe::Product.active.featured.includes(:default_image, :product_categories, :variants).root.order('created_at desc').limit(4) %>
+                <% puts x.size %>
+                <%= render 'shared/product_list_2', :products => x.includes(:default_image) %>
+
+              </div>
+            </div>
+            <!-- end: Items Row -->
+            <!-- Items Row -->
+            <div class="item">
+              <div class="row box-product">
+                <% y = Shoppe::Product.active.featured.includes(:default_image, :product_categories, :variants).root.order('updated_at desc') %>
+                <% y = y - x %>
+                <% y = y.first(4) %>
+                <%= render 'shared/product_list_2', :products => y %>
+              </div>
+            </div>
+            <!-- end: Items Row -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row clearfix f-space30"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner blue">
+        <div class="banner"> <i class="fa fa-thumbs-up"></i>
+          <h3>
+            ضمانت
+          </h3>
+          <p>
+            سلامت کتاب ها تضمین می شود
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner red">
+        <div class="banner"> <i class="fa fa-tags"></i>
+          <h3>
+          قیمت مناسب
+          </h3>
+          <p>
+          با تخفیف خوب، خرید خوب انجام دهید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner orange">
+        <div class="banner"> <i class="fa fa-headphones"></i>
+          <h3>پشتبانی همه روزی</h3>
+          <p>
+          ما هر آنچه می فروشیم را پشتیبانی می کنیم
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner lightblue">
+        <div class="banner"> <i class="fa fa-retweet"></i>
+          <h3>
+          مقایسه</h3>
+          <p>
+          کتاب ها را با هم مقایسه کنید 
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner darkblue">
+        <div class="banner"> <i class="fa fa-gift"></i>
+          <h3>
+          سورپرایز!
+          </h3>
+          <p>
+          برای دوستان خود خرید کنید!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner black">
+        <div class="banner"> <i class="fa fa-truck"></i>
+          <h3>
+          ارسال رایگان</h3>
+          <p>
+          هزینه ارسال رایگان است
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row clearfix f-space30"></div>
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <!--<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 box-block sidebar">-->
+      <!--<div class="box-heading">-->
+      <!--<span>-->
+        <!---->
+      <!--</span>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; Best Sellers Products &ndash;&gt;-->
+      <!--<div class="box-content">-->
+        <!--<div class="box-products slide carousel-fade" id="productc4">-->
+          <!--<ol class="carousel-indicators">-->
+            <!--<li class="active" data-slide-to="0" data-target="#productc4"></li>-->
+            <!--<li class="" data-slide-to="1" data-target="#productc4"></li>-->
+            <!--<li class="" data-slide-to="2" data-target="#productc4"></li>-->
+          <!--</ol>-->
+          <!--<div class="carousel-inner">-->
+            <!--&lt;!&ndash; item &ndash;&gt;-->
+            <!--<div class="item active">-->
+              <!--<div class="product-block">-->
+                <!--<div class="image">-->
+                  <!--<div class="product-label product-hot"><span>شائع</span></div>-->
+                  <!--<a class="img" href="product.html"><img alt="product info" src="product1.jpg" title="product title"></a> </div>-->
+                <!--<div class="product-meta">-->
+                  <!--<div class="name"><a href="product.html">سيدات أنيق حقيبة يد</a></div>-->
+                  <!--<div class="big-price"> <span class="price-new"><span class="sym">$</span>96</span> </div>-->
+                  <!--<div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">رأي</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>-->
+                <!--</div>-->
+                <!--<div class="meta-back"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; end: item &ndash;&gt;-->
+            <!--&lt;!&ndash; item &ndash;&gt;-->
+            <!--<div class="item">-->
+              <!--<div class="product-block">-->
+                <!--<div class="image"> <a class="img" href="product.html"><img alt="product info" src="product2.jpg" title="product title"></a> </div>-->
+                <!--<div class="product-meta">-->
+                  <!--<div class="name"><a href="product.html">شرائط أنيق حقيبة يد</a></div>-->
+                  <!--<div class="big-price"> <span class="price-new"><span class="sym">$</span>654.87</span> </div>-->
+                  <!--<div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">رأي</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>-->
+                <!--</div>-->
+                <!--<div class="meta-back"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; end: item &ndash;&gt;-->
+            <!--&lt;!&ndash; item &ndash;&gt;-->
+            <!--<div class="item">-->
+              <!--<div class="product-block">-->
+                <!--<div class="image"> <a class="img" href="product.html"> <img alt="product info" src="product3.jpg" title="product title"></a> </div>-->
+                <!--<div class="product-meta">-->
+                  <!--<div class="name"><a href="product.html">أنثىs أنيق حقيبة يد</a></div>-->
+                  <!--<div class="big-price"> <span class="price-new"><span class="sym">$</span>1600</span> </div>-->
+                  <!--<div class="big-btns"> <a class="btn btn-default btn-view pull-left" href="">رأي</a> <a class="btn btn-default btn-addtocart pull-right" href="">إضافة إلى العربة</a> </div>-->
+                <!--</div>-->
+                <!--<div class="meta-back"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; end: item &ndash;&gt;-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="carousel-controls"> <a class="carousel-control left" data-slide="prev" href="#productc4"> <i class="fa fa-angle-left fa-fw"></i> </a> <a class="carousel-control right" data-slide="next" href="#productc4"> <i class="fa fa-angle-right fa-fw"></i> </a> </div>-->
+        <!--<div class="nav-bg"></div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; end: Best Sellers Products &ndash;&gt;-->
+      <!--<div class="row clearfix f-space10"></div>-->
+      <!--&lt;!&ndash; Get Updates Box &ndash;&gt;-->
+      <!--<div class="box-content">-->
+        <!--<div class="subscribe">-->
+          <!--<div class="heading">-->
+            <!--<h3>الحصول على التحديثات</h3>-->
+          <!--</div>-->
+          <!--<div class="formbox">-->
+            <!--<form>-->
+              <!--<i class="fa fa-envelope fa-fw"></i>-->
+              <!--<input class="form-control" id="InputUserEmail" placeholder="Your e-mail..." type="text">-->
+              <!--<button class="btn color1 normal pull-right" type="submit">الاشتراك</button>-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; end: Get Updates Box &ndash;&gt;-->
+    <!--</div>-->
+    <!-- end: Sidebar -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="row">
+        <div class="col-md-8 blog-block">
+          <!-- Blog widget Box -->
+          <div class="box-content slide carousel-fade" id="blogslide">
+            <div class="carousel-inner">
+              <!-- Post -->
+              <div class="blog-entry item active">
+                <div class="image">
+                  <span class="blogico">
+                    <i class="fa fa-bullhorn fa-fw"></i>
+                    <br>
+اطلاع رسانی
+                  </span>
+                  <img class="ani-image" src="assets/blog-4.jpg" alt="image info"> </div>
+                <div class="entry-row">
+                  <div class="date col-xs-12"><span>16</span><span>اردیبهشت</span></div>
+                  <div class="blog-text">
+                   <span>
+                   زمان کنکور کارشناسی ارشد تغییر کرد .. 
+                  </span> 
+                  <span>
+                  زمان کنکور کارشناسی ارشد تغییر کرد
+                  </span> 
+                  <span>
+خبر گزاری فارس
+                    <!--<a href="#a">-->
+                   <!--<i class="fa fa-user fa-fw"></i>-->
+                   <!--فلان الفلاني</a>-->
+                    <!--<a href="#a">-->
+                     <!--<i class="fa fa-comments fa-fw"></i>-->
+                     <!--4 تعليقات</a>-->
+                      </span>
+                       </div>
+                </div>
+              </div>
+              <!--END Post -->
+              <!-- Post -->
+              <div class="blog-entry item">
+                <div class="image"> <span class="blogico"> <i class="fa fa-bullhorn fa-fw"></i><br>
+                  Blog entry</span> <img class="ani-image" src="assets/blog-1.jpg" alt=""> </div>
+                <div class="entry-row">
+                  <div class="date col-xs-12"><span>27</span><span>Oct 2013</span></div>
+                  <div class="blog-text"> <span>Nulla quis lorem ut libero malesuada...</span> <span>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec
+                    rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada
+                    feugiat. Curabitur arcu erat, accumsan id imperdiet....</span> <span> <a href="#a"> <i class="fa fa-user fa-fw"></i>John Doe</a> <a href="#a"> <i class="fa fa-comments fa-fw"></i>2 Comments</a> </span> </div>
+                </div>
+              </div>
+              <!--END Post -->
+
+
+            </div>
+            <div class="carousel-controls"> <a class="carousel-control left" data-slide="prev" href="#blogslide"> <i class="fa fa-angle-left fa-fw"></i> </a> <a class="carousel-control right" data-slide="next" href="#blogslide"> <i class="fa fa-angle-right fa-fw"></i> </a> </div>
+          </div>
+          <!-- end: Blog widget Box -->
+          <div class="f-space10"></div>
+        </div>
+        <div class="col-md-4 twitter-block">
+          <!-- twitter widget box -->
+          <div class="box-content">
+            <div class="twitter-box">
+              <i class="fa fa-instagram fa-fw"></i>
+              <div class="title">
+              اخبار قاصدک
+              </div>
+              <div class="carousel-fade slide" id="tweets">
+                <div class="carousel-inner">
+                  <!-- tweet -->
+                  <div class="tweet item active">
+                  <span>RT: <em>خدمات پس از فروش</em>
+                  <br>
+                   پیگیری تلفنی سفارشات
+                   <b> 
+                   www.instagram.com</b>- <em>
+                   @ghasedak</em>
+                    <br>
+                    <br>
+                    </span>
+                    </div>
+                  <!-- end: tweet -->
+                  <!-- tweet -->
+                  <div class="tweet item">
+                  <span>RT: <em>تحویل روز بعد</em>
+                  سفارشات قبل از ساعت ۴ عصر تا روز بعد درب منزل شما خواهد بود
+                   <b> http://goo.gl/4N8JN </b>- <em>@flatro</em> <br>
+                    <br>
+                    منذ حوالي 2 ساعة</span></div>
+                  <!-- end: tweet -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end: twitter widget box -->
+          <div class="f-space10"></div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Brands -->
+        <div class="col-md-12 main-column box-block brands-block">
+          <div class="box-heading">
+            <span>
+              انتشارات ما
+            </span></div>
+          <div class="box-content">
+            <div class="box-products box-brands slide" id="brands">
+              <div class="carousel-controls"> <a class="carousel-control left" data-slide="prev" href="#brands"> <i class="fa fa-angle-left fa-fw"></i> </a> <a class="carousel-control right" data-slide="next" href="#brands"> <i class="fa fa-angle-right fa-fw"></i> </a> </div>
+              <div class="carousel-inner">
+                <div class="brands-row item active">
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo1.png" alt=""></a></div>
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo2.png" alt=""></a></div>
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo3.png" alt=""></a></div>
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo1.png" alt=""></a></div>
+                </div>
+                <div class="brands-row item">
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo3.png" alt=""></a></div>
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo2.png" alt=""></a></div>
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo1.png" alt=""></a></div>
+                  <div class="brand-logo"><a href="#a"><img src="assets/brands/logo3.png" alt=""></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end: Brands -->
+    </div>
+  </div>
+</div>
+<div class="row clearfix f-space30"></div>
+
+<script src="assets/style-switch.js" type="text/javascript"></script>
+
+<script type="application/javascript">
+
+    (function($) {
+        "use strict";
+        console.log("test");
+        $('#menuMega').menu3d();
+        $('#iview').iView({
+            pauseTime: 10000,
+            pauseOnHover: true,
+            directionNavHoverOpacity: 0.6,
+            timer: "360Bar",
+            timerBg: '#2da5da',
+            timerColor: '#fff',
+            timerOpacity: 0.9,
+            timerDiameter: 20,
+            timerPadding: 1,
+            touchNav: true,
+            timerStroke: 2,
+            timerBarStrokeColor: '#fff'
+        });
+
+        $('.quickbox').carousel({
+            interval: 10000
+        });
+        $('#monthly-deals').carousel({
+            interval: 3000
+        });
+        $('#productc2').carousel({
+            interval: 4000
+        });
+        $('#tweets').carousel({
+            interval: 5000
+        });
+    })(jQuery);
+
+
+</script>

@@ -1,0 +1,438 @@
+<% active_nav_item :catalogue %>
+<% @page_title = @product.name + " - " + @product.product_category.name %>
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 box-block">
+
+      <div class="box-content">
+        <div class="single-product">
+          <div class="images col-md-4 col-sm-12 col-xs-12">
+            <div class="big-image col-md-12 col-sm-12 col-xs-12">
+              <!--<img id="product-image" src="images/products/product1.jpg" data-zoom-image="images/products/product1.jpg" alt="big image">-->
+              <% if @product.default_image %>
+                  <%= image_tag @product.default_image.path , :id => "zoomable" ,data: { 'zoom-image'=> @product.default_image.path} %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="product-details col-md-8 col-sm-12 col-xs-12">
+          <div class="title">
+            <h1 class="farsi">
+              <%= @product.name %>
+            </h1>
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-half-o"></i>
+              <i class="fa fa-star-o"></i>
+                <span>
+                  این کالا
+                  <%= @comments.count %>
+                  نظر دارد
+                  <!--<a href="#a">Add Review</a>-->
+                </span>
+            </div>
+          </div>
+          <!-- end: Title and rating info -->
+
+          <div class="row">
+            <!-- Availability, Product Code, Brand and short info -->
+            <div class="short-info-wr col-md-12 col-sm-12 col-xs-12">
+              <div class="short-info">
+                <div class="product-attr-text">
+                  <!--Availability:-->
+                  <% if @product.in_stock? %>
+                      <span class="available">موجود </span>
+                  <% else %>
+                    <span class="notavailable">
+                      موجود نیست
+                    </span>
+                  <% end %>
+                </div>
+
+                <div class="product-attr-text">
+                  دسته بندی
+                  <% cat = Shoppe::ProductCategorization.where(:product_id => @product.id).first.product_category %>
+                  <%=link_to cat.name , products_path(cat.permalink), style: "color: black !important;" %>
+                </div>
+                <p class="short-info-p">
+                  <%= @product.short_description %>
+                </p>
+
+              </div>
+            </div>
+            <!-- end: Availability, Product Code, Brand and short info -->
+          </div>
+          <div class="row">
+            <div class="short-info-opt-wr col-md-8 col-sm-8 col-xs-12">
+              <div class="short-info-opt">
+                <div class="att-row">
+                  <div class="qty-wr">
+                    <%= form_tag buy_product_path(@product.product_category.permalink, @product.permalink), :class => (@product.in_stock? ? 'in-stock' : 'no-stock') do %>
+
+                        <div class="qty-text hidden-xs">
+                          تعداد:
+                        </div>
+                        <div class="quantity-inp">
+                          <!--<input type="text" class="quantity-input" name="p_quantity" value="1">-->
+                          <%= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !@product.in_stock? ,:class=> "quantity-input" , :style=> "width: 50px;height: 35px;
+background: darkturquoise;
+color: white;" %>
+
+                        </div>
+                        <!--<div class="quantity-txt"><a href="#a" class="qty qtyminus"><i class="fa fa-minus fa-fw"></i></a></div>-->
+                        <!--<div class="quantity-txt"><a href="#a" class="qty qtyplus"><i class="fa fa-plus fa-fw"></i></a></div>-->
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="price-wr col-md-4 col-sm-4 col-xs-12">
+                          <div class="price">
+                              <span class="price-new">
+                                <%= number_to_currency @product.price %>
+                              </span>
+                          </div>
+
+                        </div>
+                        </div>
+                        <div class="row">
+                          <div class="price-wr col-md-4 col-sm-4 col-xs-12">
+                            <div class="product-btns">
+                              <div class="product-big-btns">
+                                <!--<button class="btn btn-addtocart">-->
+                                <!--</button>-->
+                                <% if @product.in_stock? %>
+                                    <%= button_tag(type: "submit", class: "btn btn-addtocart") do %>
+                                        اضافه به سبد خرید
+                                        <i class="fa fa-shopping-cart"></i>
+                                    <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-btns-wr col-md-8 col-sm-8 col-xs-12">
+                            <div class="product-btns">
+                              <div class="product-big-btns">
+
+                    <% end %>
+                    <!--<button class="btn btn-compare" data-toggle="tooltip" title="" data-original-title="Add to Compare">-->
+                    <!--<i class="fa fa-retweet fa-fw"></i>-->
+                    <!--</button>-->
+                    <button class = "btn btn-default btn-compare pull-left" data-toggle="tooltip" title="" data-original-title="انتخاب برای مقایسه"  >
+                      <%= link_to add_object_path(:product => @product) do%>
+                          <i class="fa fa-retweet fa-fw"></i>
+                      <% end %>
+                    </button>
+                    <!--<button class="btn btn-wishlist" data-toggle="tooltip" title="" data-original-title="Add to Wishlist">-->
+                    <!--<i class="fa fa-heart fa-fw"></i>-->
+                    <!--</button>-->
+                    <!--<button class="btn btn-sendtofriend" data-toggle="tooltip" title="" data-original-title="Send to Friend">-->
+                    <!--<i class="fa fa-envelope fa-fw"></i>-->
+                    <!--</button>-->
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+        <!-- end: product details -->
+
+      </div>
+
+      <!-- end: single product -->
+
+    </div>
+
+    <!-- end: box content -->
+
+  </div>
+</div>
+<!-- end:row -->
+</div>
+
+<!--<div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; top: -9999px; z-index: 100000;">-->
+<!--<iframe id="_atssh354" title="AddThis utility frame" src="http://s7.addthis.com/static/sh.de60137c.html#iit=1438966656155&amp;tmr=load%3D1438966655938%26core%3D1438966655986%26main%3D1438966656143%26ifr%3D1438966656168&amp;cb=0&amp;cdn=0&amp;kw=&amp;ab=-&amp;dh=themes.logoby.us&amp;dr=http%3A%2F%2Fthemes.logoby.us%2Fflatro%2Fcategory-list.html&amp;du=http%3A%2F%2Fthemes.logoby.us%2Fflatro%2Fproduct.html&amp;href=http%3A%2F%2Fthemes.logoby.us%2Fflatro%2Fproduct.html&amp;dt=Flatro%20-%20Online%20Shop%20Template&amp;dbg=0&amp;cap=tc%3D0%26ab%3D1&amp;inst=1&amp;jsl=1&amp;prod=undefined&amp;lng=en-US&amp;ogt=&amp;pc=men&amp;pub=ra-4df5ee7405c65a76&amp;ssl=0&amp;sid=55c4e37f1b8f07a8&amp;srpl=1&amp;srcs=1&amp;srd=1&amp;srf=0.01&amp;srx=1&amp;ver=300&amp;xck=0&amp;xtr=0&amp;og=&amp;aa=0&amp;csi=undefined&amp;toLoJson=uvs%3D55c4e37f788816d3000%26chr%3DUTF-8%26md%3D0%26vcl%3D1&amp;rev=v2.3.3-wp&amp;ct=1&amp;xld=1&amp;xd=1&amp;fcu=VcTjf3WUcbw" style="height: 1px; width: 1px; position: absolute; top: 0px; z-index: 100000; border: 0px; left: 0px;"></iframe></div>-->
+
+<div class="row clearfix f-space30"></div>
+
+<div class="container">
+  <!-- row -->
+  <div class="row">
+    <!-- tabs -->
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 main-column box-block product-details-tabs">
+      <div class="col-md-12 ">
+
+        <!-- Details Info/Reviews/Tags -->
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs blog-tabs nav-justified">
+          <li class="active">
+            <a href="#details-info" data-toggle="tab" class="black_color" >
+              <i class="fa  fa-th-list fa-fw"></i>
+              مشخصات کالا
+            </a>
+          </li>
+          <li><a class="black_color" href="#reviews" data-toggle="tab"><i class="fa fa-comments fa-fw"></i> نظرات</a></li>
+          <!--<li> <a class="black_color"  href="#tags" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> Tags </a> </li>-->
+          <!--<li><a class="black_color" href="#custom-tab" data-toggle="tab"><i class="fa fa-video-camera fa-fw"></i> Custom Tab</a></li>-->
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="details-info">
+            <p>
+              <%= @product.description %>
+            </p>
+            <!--<p>-->
+            <!--Dynamically-->
+            <!--<strong class="color1">productivate</strong>-->
+            <!--revolutionary growth strategies with installed base initiatives. Seamlessly morph optimal core competencies with transparent paradigms.-->
+            <!--</p>-->
+            <div class="table-responsive">
+              <% unless @attributes.empty? %>
+                  <table class="table table-stripper">
+                    <%for attribute in @attributes %>
+                        <tr>
+                          <th>
+                            <%= attribute.key %> :
+                          </th>
+                          <td>
+                            <%= link_to attribute.value, product_filter_path(:key => attribute.key, :value => attribute.value) %>
+                          </td>
+                        </tr>
+                    <% end %>
+                  </table>
+              <% end %>
+            </div>
+          </div>
+          <div class="tab-pane" id="reviews">
+            <div class="heading">
+            <span>
+
+              <%= @comments.count  %>
+              نظر برای
+              <strong>
+                <%= @product.name %>
+              </strong>
+              ایجاد شده است
+            </span>
+
+              <!--<div class="rating">-->
+              <!--<i class="fa fa-star">-->
+              <!---->
+              <!--</i>-->
+              <!--<i class="fa fa-star"></i>-->
+              <!--<i class="fa fa-star"></i>-->
+              <!--<i class="fa fa-star-half-o"></i>-->
+              <!--<i class="fa fa-star-o"></i>-->
+              <!--</div>-->
+
+            </div>
+
+            <% @comments.each do |comment| %>
+                <div class="review">
+                  <div class="review-info">
+                    <div class="name">
+                      <i class="fa fa-comment-o fa-flip-horizontal fa-fw"></i>
+                      <%= hide_number(comment.user.phone_number)%>
+                    </div>
+                    <div class="date">
+                      <%= timeago_tag(comment.created_at , :lang => :fa ) %>
+                    </div>
+                    <div class="pull-left">
+                      <% if current_user == comment.user %>
+                          <%= link_to "حذف" , comment , method: :delete, data: { confirm: 'آیا مطمئنی؟' }, :class=>"btn " %>
+                      <% end %>
+                    </div>
+                  </div>
+                <div class="text">
+                  <%= comment.content %>
+                </div>
+                </div>
+          <% end %>
+
+            <div class="write-reivew" id="#write-review">
+
+
+            <% if signed_in? %>
+                  <h3 class="farsi">
+                    نظر خود را بنویسید:
+                  </h3>
+                <%= render 'comments/form' %>
+            <%else %>
+                <h3 class="farsi">
+                  شما باید عضو باشید تا بتوانید نظر بدهید
+                </h3>
+                <%= link_to 'ثبت نام', new_user_registration_path , class: "btn" %>
+            <% end %>
+            </div>
+
+          </div>
+          <!--<div class="tab-pane" id="tags">-->
+          <!--<div class="tags"> <a href="#a">Free</a> <a href="#a">Minimal</a> <a href="#a">Clean</a> <a href="#a">Flatro</a> <a href="#a">Metro</a> <a href="#a">Flat</a> <a href="#a">Blue</a> <a href="#a">Fashion</a> <a href="#a">Best</a> <a href="#a">Popular</a> <a href="#a">Good</a> <a href="#a">Free</a> <a href="#a">Minimal</a> <a href="#a">Clean</a> <a href="#a">Flatro</a> <a href="#a">Metro</a> <a href="#a">Flat</a> <a href="#a">Blue</a> <a href="#a">Fashion</a> <a href="#a">Best</a> <a href="#a">Popular</a> <a href="#a">Good</a> <a href="#a">Free</a> <a href="#a">Minimal</a> <a href="#a">Clean</a> <a href="#a">Flatro</a> <a href="#a">Metro</a> <a href="#a">Flat</a> <a href="#a">Blue</a> <a href="#a">Fashion</a> <a href="#a">Best</a> <a href="#a">Popular</a> <a href="#a">Good</a> <a href="#a">Free</a> <a href="#a">Minimal</a> <a href="#a">Clean</a> <a href="#a">Flatro</a> <a href="#a">Metro</a> <a href="#a">Flat</a> <a href="#a">Blue</a> <a href="#a">Fashion</a> <a href="#a">Best</a> <a href="#a">Popular</a> <a href="#a">Good</a> <a href="#a">Free</a> <a href="#a">Minimal</a> <a href="#a">Clean</a> <a href="#a">Flatro</a> <a href="#a">Metro</a> <a href="#a">Flat</a> <a href="#a">Blue</a> <a href="#a">Fashion</a> <a href="#a">Best</a> <a href="#a">Popular</a> <a href="#a">Good</a> </div>-->
+          <!--</div>-->
+          <!--<div class="tab-pane" id="custom-tab">-->
+          <!--<p>Phosfluorescently productize technically sound process improvements for customized bandwidth. Competently coordinate leveraged catalysts for change without multimedia based services. Objectively fabricate user-centric experiences before.</p>-->
+          <!--<div class="video-wrapper">-->
+          <!--<div class="video-container">-->
+          <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/keDneypw3HY" frameborder="0" allowfullscreen=""></iframe>-->
+          <!--</div>-->
+          <!--/video-->
+          <!--</div>-->
+          <!--/video-wrapper -->
+          <!--</div>-->
+        </div>
+        <!-- end: Tab panes -->
+        <!-- end: Details Info/Reviews/Tags -->
+        <div class="clearfix f-space30"></div>
+
+
+
+
+      </div>
+
+
+      <!--related products:-->
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-column box-block">
+        <div class="box-heading"><span>
+        شاید این کالا ها رو هم دوست داشته باشی ..
+        </span></div>
+        <div class="box-content">
+          <div class="box-products slide" id="productc3">
+            <div class="carousel-inner">
+              <!-- Items Row -->
+              <div class="item active">
+
+                <div class="row box-product">
+
+                  <%= render 'shared/product_list', :products => @similars %>
+
+                </div>
+              </div>
+
+              <!-- end: Items Row -->
+              <!-- Items Row -->
+
+              <!-- end: Items Row -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end: tabs -->
+
+    <!-- sidebar -->
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 box-block sidebar">
+      <div class="box-heading"><span>مقایسه</span></div>
+      <!-- Compare -->
+      <div class="box-content">
+        <div class="compare">
+          <%= render "shared/compare" %>
+        </div>
+
+        <!-- Compare -->
+      </div>
+
+      <%= render 'shared/categories_side_panel' %>
+
+
+      <div class="clearfix f-space30"></div>
+    </div>
+    <!-- end: sidebar -->
+  </div>
+  <!-- row -->
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner blue">
+        <div class="banner"> <i class="fa fa-thumbs-up"></i>
+          <h3>
+            ضمانت
+          </h3>
+          <p>
+            سلامت کتاب ها تضمین می شود
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner red">
+        <div class="banner"> <i class="fa fa-tags"></i>
+          <h3>
+            قیمت مناسب
+          </h3>
+          <p>
+            با تخفیف خوب، خرید خوب انجام دهید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner orange">
+        <div class="banner"> <i class="fa fa-headphones"></i>
+          <h3>پشتبانی همه روزی</h3>
+          <p>
+            ما هر آنچه می فروشیم را پشتیبانی می کنیم
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner lightblue">
+        <div class="banner"> <i class="fa fa-retweet"></i>
+          <h3>
+            مقایسه</h3>
+          <p>
+            کتاب ها را با هم مقایسه کنید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner darkblue">
+        <div class="banner"> <i class="fa fa-gift"></i>
+          <h3>
+            سورپرایز!
+          </h3>
+          <p>
+            برای دوستان خود خرید کنید!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner black">
+        <div class="banner"> <i class="fa fa-truck"></i>
+          <h3>
+            ارسال رایگان</h3>
+          <p>
+            هزینه ارسال رایگان است
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="clearfix f-space30"></div>
+
+<script type="application/javascript">
+
+    (function($) {
+        //Zoom Product
+        $("#zoomable").elevateZoom({
+            scrollZoom : true,  constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active"
+        });
+        $("#zoomable").bind("click", function(e) {
+            var ez = $('#zoomable').data('elevateZoom');	$.fancybox(ez.getGalleryList()); return false;
+        });
+    })(jQuery);
+
+</script>
+
+

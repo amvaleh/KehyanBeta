@@ -1,0 +1,80 @@
+<% for product in products %>
+<!-- Product -->
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+  <div class="product-block">
+    <div class="image">
+      <div class="product-label product-sale"><span>
+        فروش
+      </span>
+    </div>
+    <%=link_to product_path(product.product_category.permalink, product.permalink) , {:class => "img"} do %>
+    <% if product.default_image.present? %>
+    <%= image_tag product.default_image.path , :height => "330px !important;" %>
+    <% else %>
+    <img width="300" height="300" src="assets/book_logo.png" class="attachment-shop_catalog wp-post-image">
+    <span class="product-title">
+    </span>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="product-meta">
+    <div class="name">
+      <%= link_to product.name, product_path(product.product_category.permalink, product.permalink) %>
+    </div>
+    <div class="big-price">
+      <span class="price-new">
+        <span class="sym">
+          <%= number_to_currency product.price%>
+        </span>
+        </span>
+        <!--<span class="price-old">-->
+        <!--<span class="sym">-->
+        <!--$-->
+        <!--</span>-->
+        <!--119.50-->
+        <!--</span>-->
+
+      </div>
+
+      <div class="big-btns">
+        <%= link_to "مشاهده", product_path(product.product_category.permalink, product.permalink), :class => "btn btn-default btn-view pull-left" %>
+        <%= link_to "اضافه به سبد", buy_product_path(product.product_category.permalink, product.permalink),  :method => :post, :class => "btn btn-default btn-addtocart pull-right" %>
+      </div>
+      <div class="small-price">
+        <span class="price-new">
+          <%= number_to_currency product.price%>
+        </span>
+      </div>
+      <!--<div class="rating">-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star-half-o"></i>-->
+        <!--<i class="fa fa-star-o"></i>-->
+      <!--</div>-->
+      <div class="small-btns">
+        <button class = "btn btn-default btn-compare pull-left" >
+          <%= link_to add_object_path(:product => product) do%>
+          <i class="fa fa-retweet fa-fw"></i>
+          <% end %>
+        </button>
+        <!--<button class="btn btn-default btn-wishlist pull-left" data-toggle="tooltip" title="" data-original-title="اضف الى قائمة الامنيات">-->
+        <!--<i class="fa fa-heart fa-fw"></i>-->
+        <!--</button>-->
+        <button class = "btn btn-default btn-addtocart pull-left" >
+          <%= link_to buy_product_path(product.product_category.permalink, product.permalink) , :method => :post do %>
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          <% end %>
+        </button>
+
+        <!--<button class="btn btn-default btn-addtocart pull-left" data-toggle="tooltip" title="" data-original-title="إضافة إلى العربة">-->
+        <!--<i class="fa fa-shopping-cart fa-fw"></i>-->
+        <!--</button>-->
+      </div>
+    </div>
+    <div class="meta-back"></div>
+  </div>
+</div>
+<!-- end: Product -->
+
+<% end %>

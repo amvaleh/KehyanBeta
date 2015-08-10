@@ -1,0 +1,203 @@
+<% active_nav_item :catalogue %>
+<% @page_title = @product_category.name %>
+<%= render 'shared/navbar' %>
+<!--%h2= @product_category.name-->
+<div class="container" %>
+  <div class="row">
+    <div class="col-md-9 col-sm-12 col-xs-12 box-block">
+      <div class="box-heading category-heading">
+          <span>
+در این دسته بندی
+            <%= @products.total_count %>
+            کالا
+            موجود است
+            |
+
+            <% unless @product_category.description.blank? %>
+                <%= @product_category.description %>
+            <% end %>
+          </span>
+        <!--<ul class="nav nav-pills pull-right">-->
+        <!--<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#a"> 9 per page <i class="fa fa-sort fa-fw"></i> </a>-->
+        <!--<ul class="dropdown-menu" role="menu" style="display: none;">-->
+        <!--<li><a href="#a">12 per page</a></li>-->
+        <!--<li><a href="#a">15 per page</a></li>-->
+        <!--<li><a href="#a">18 per page</a></li>-->
+        <!--<li><a href="#a">21 per page</a></li>-->
+        <!--<li><a href="#a">100 per page</a></li>-->
+        <!--<li><a href="#a">Show all</a></li>-->
+        <!--</ul>-->
+        <!--</li>-->
+        <!--<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#a"> Sort by <i class="fa fa-sort fa-fw"></i> </a>-->
+        <!--<ul class="dropdown-menu" role="menu" style="display: none;">-->
+        <!--<li><a href="#a">Name (A-Z)</a></li>-->
+        <!--<li><a href="#a">Name (Z-A)</a></li>-->
+        <!--<li><a href="#a">Price (Low-High)</a></li>-->
+        <!--<li><a href="#a">Price (High-Low)</a></li>-->
+        <!--<li><a href="#a">Rating Highest</a></li>-->
+        <!--<li><a href="#a">Rating Lowest</a></li>-->
+        <!--<li><a href="#a">Recent</a></li>-->
+        <!--</ul>-->
+        <!--</li>-->
+        <!--<li class="view-list"> <a href="category-list.html"> <i class="fa fa-list-ul fa-fw"></i></a> </li>-->
+        <!--<li class="view-grid active"> <a href="category-grid.html"> <i class="fa fa-th-large fa-fw"></i></a> </li>-->
+        <!--</ul>-->
+      </div>
+      <div class="row clearfix f-space20"></div>
+      <div class="box-content">
+        <div class="box-products">
+
+          <!-- Products Row -->
+          <div class="row box-product">
+
+            <%if @products.empty? %>
+                <p style="text-align: center">
+                  هیچ محصولی در این دسته بندی نمی باشد
+
+                </p>
+            <% else %>
+                <%= render 'shared/product_list', :products => @products %>
+            <% end %>
+
+
+
+          </div>
+          <!-- end: Products Row -->
+        </div>
+      </div>
+      <br><br><br>
+      <div class="box-content">
+        <% if @product_category.children.any? %>
+            <% for category in @product_category.children %>
+                <div class="box-heading category-heading">
+                  <%= link_to products_path(category.permalink) do%>
+                      <span style="text-align: center;">
+                    کالا های دسته بندی زیر مجموعه
+                        <%= category.name %> :
+                        <small>
+                          <%= category.description %>
+                        </small>
+                  </span>
+                  <% end %>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+      <div class="clearfix f-space30"></div>
+
+      <div class="col-md-12 col-md-offset-5">
+        <%=paginate @products %>
+
+        <!--<ul class="pagination pagination-lg">-->
+        <!--<li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>-->
+        <!--<li class="active"><a href="#">1</a></li>-->
+        <!--<li><a href="#">2</a></li>-->
+        <!--<li><a href="#">3</a></li>-->
+        <!--<li><a href="#">4</a></li>-->
+        <!--<li><a href="#">5</a></li>-->
+        <!--<li><a href="#"><i class="fa fa-angle-right"></i></a></li>-->
+        <!--</ul>-->
+      </div>
+    </div>
+
+    <!-- side bar -->
+    <div class="col-md-3 col-sm-12 col-xs-12 box-block page-sidebar">
+
+      <!-- end: Filter by -->
+      <div class="box-heading"><span>مقایسه</span></div>
+      <!-- Compare -->
+      <div class="box-content">
+        <div class="compare">
+          <%= render "shared/compare" %>
+        </div>
+
+        <!-- Compare -->
+      </div>
+      <div class="clearfix f-space30"></div>
+      <%= render "shared/categories_side_panel" %>
+      <!-- end: Blog Categories -->
+
+
+      <div class="clearfix f-space20"></div>
+      <!-- Get Updates Box -->
+      <!-- end: Get Updates Box -->
+    </div>
+    <!-- end:sidebar -->
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner blue">
+        <div class="banner"> <i class="fa fa-thumbs-up"></i>
+          <h3>
+            ضمانت
+          </h3>
+          <p>
+            سلامت کتاب ها تضمین می شود
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner red">
+        <div class="banner"> <i class="fa fa-tags"></i>
+          <h3>
+            قیمت مناسب
+          </h3>
+          <p>
+            با تخفیف خوب، خرید خوب انجام دهید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner orange">
+        <div class="banner"> <i class="fa fa-headphones"></i>
+          <h3>پشتبانی همه روزی</h3>
+          <p>
+            ما هر آنچه می فروشیم را پشتیبانی می کنیم
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner lightblue">
+        <div class="banner"> <i class="fa fa-retweet"></i>
+          <h3>
+            مقایسه</h3>
+          <p>
+            کتاب ها را با هم مقایسه کنید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner darkblue">
+        <div class="banner"> <i class="fa fa-gift"></i>
+          <h3>
+            سورپرایز!
+          </h3>
+          <p>
+            برای دوستان خود خرید کنید!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner black">
+        <div class="banner"> <i class="fa fa-truck"></i>
+          <h3>
+            ارسال رایگان</h3>
+          <p>
+            هزینه ارسال رایگان است
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row clearfix f-space30"></div>

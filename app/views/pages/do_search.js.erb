@@ -2,9 +2,9 @@ $('#result').css('display','block');
 $('#result').empty();
 
 <% @result.each do |res| %>
-$('#result').append('<li class="li_style "><%if res.default_image%><%= image_tag res.default_image.path , :class => "pull-left img-responsive img-circle",:width => "35px" %><%end%><%= link_to res.name , product_path(res.product_category.permalink, res.permalink) , class: "li_link"%></li>')
+$('#result').append('<li class="li_style"><div class="row" style="margin-top: 3px;margin-bottom: 6px;"><%if res.default_image%><div class="col-md-3 pull-left"><%= image_tag res.default_image.path , :class => "img_search ",:width => "60px" %><%end%></div><div class="col-md-9 pull-right"><%= link_to res.name , product_path(res.product_category.permalink, res.permalink) , class: ""%></div></div></li>')
 <% end %>
 
 <% @result2.each do |res| %>
-$('#result').append('<li class="li_style"><img src="assets/category.png" class="img-rounded pull-left" ><%= link_to(products_path(res.permalink), {:class => "li_link"}) do %> <small>دسته بندی</small><span class="cat_style"><%=res.name%></span><%end%></li>')
+$('#result').append('<li class="li_style"><%= link_to(products_path(res.permalink), {:class => "li_link"}) do %> <small>دسته بندی</small><span class="cat_style"><%=res.name%></span><%end%></li>')
 <% end %>

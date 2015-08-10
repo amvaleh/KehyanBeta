@@ -1,0 +1,91 @@
+<% if order.order_items.any? %>
+<% for item in order.order_items %>
+    <div class="" >
+      <div class="product" style="display: block">
+        <div class="col-md-2 col-sm-3 hidden-xs p-wr">
+          <div class="product-attrb-wr">
+            <div class="product-attrb">
+              <div class="image">
+                <%product = Shoppe::Product.find(item.ordered_item_id) %>
+                <%=link_to product_path(product.product_category.permalink, product.permalink) , {:class => "img"} do %>
+                    <% if product.default_image.present? %>
+                        <%= image_tag product.default_image.path , :height => "330px !important;" %>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 col-sm-7 col-xs-9 p-wr">
+          <div class="product-attrb-wr">
+            <div class="product-meta">
+              <div class="name">
+                <%=link_to product_path(product.product_category.permalink, product.permalink) , {:class => "img"} do %>
+                    <%= product.name %>
+                <% end %>
+              </div>
+              <div class="price">
+                  <span class="price-new" style="font-size: 20px">
+                    <%= number_to_currency item.sub_total %>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 hidden-sm hidden-xs p-wr">
+          <div class="product-attrb-wr">
+            <div class="product-attrb">
+              <div class="qtyinput">
+                <div class="quantity-inp">
+                  <div class="quantity-txt minusbtn">
+                    <%= link_to  adjust_basket_item_quantity_path(item.id), :method => :delete, :class => 'qty qtyminus' do%>
+                        <i class="fa fa-minus fa-fw"></i>
+                    <% end %>
+                  </div>
+                  <div class="quantity-txt plusbtn">
+                    <%= link_to adjust_basket_item_quantity_path(item.id), :method => :post, :class => 'qty qtyplus' do %>
+                        <i class="fa fa-plus fa-fw"></i>
+                    <% end %>
+                  </div>
+                  <input readonly="true" type="number" class="quantity-input" name="p_quantity" value=<%=item.quantity%>>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 hidden-sm hidden-xs p-wr">
+          <div class="product-attrb-wr">
+            <div class="product-attrb">
+              <div class="price">
+                  <span class="t-price">
+                      <%= number_to_currency item.total %>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-3 p-wr">
+          <div class="product-attrb-wr">
+            <div class="product-attrb">
+              <div class="remove">
+                <%= link_to remove_basket_item_path(item), :method => :delete, :class => 'color2' do %>
+                    <i class="fa fa-trash-o fa-fw color2"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" clearfix f-space30"></div>
+<% end %>
+<% else %>
+    <h2 class="bg-red farsi" style="text-align: center">
+      شما کالایی در سبد خرید ندارید
+    </h2>
+
+<% end %>
+
+
+

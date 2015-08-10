@@ -1,0 +1,204 @@
+<!---#%tr-->
+<!---#  %td تعداد-->
+<!---#  %td کتاب-->
+<!---#  %td قیمت-->
+<!---#  %td= Shoppe.settings.tax_name-->
+<!---#  %td جمع-->
+
+<% for item in order.order_items %>
+      <div class="row">
+        <div class="product">
+          <div class="col-md-2 col-sm-3 hidden-xs p-wr">
+            <div class="product-attrb-wr">
+              <div class="product-attrb">
+                <div class="image">
+                  <%product = Shoppe::Product.find(item.ordered_item_id) %>
+                  <%=link_to product_path(product.product_category.permalink, product.permalink) , {:class => "img"} do %>
+                      <% if product.default_image.present? %>
+                          <%= image_tag product.default_image.path , :height => "330px !important;" %>
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-7 col-xs-9 p-wr">
+            <div class="product-attrb-wr">
+              <div class="product-meta">
+                <div class="name">
+                  <span>
+                    <%=link_to product_path(product.product_category.permalink, product.permalink) , {:class => "img"} do %>
+                        <%= product.name %>
+                    <% end %>
+                  </span>
+                </div>
+                <div class="price">
+                  <span class="price-new">
+                    <%= number_to_currency item.sub_total %>
+                  </span>
+                </div>
+                <!--<a href="#a" class="btn normal color2">Edit Order</a>-->
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-2 hidden-sm hidden-xs p-wr">-->
+          <!--<div class="product-attrb-wr">-->
+          <!--<div class="product-attrb">-->
+          <!--<div class="att"> <span>Color:</span> <a href="#a" data-toggle="tooltip" title="" class="color bg-teal" data-original-title="Teal"></a> </div>-->
+          <!--<div class="att"> <span>Size:</span> <span class="size">XS</span> </div>-->
+          <!--<div class="att"> <span>Type:</span> <span class="size">Cotton</span> </div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="col-md-3 hidden-sm hidden-xs p-wr">
+            <div class="product-attrb-wr">
+              <div class="product-attrb">
+                <div class="qtyinput">
+                  <div class="quantity-inp">
+                    <div class="quantity-txt minusbtn">
+                      <%= link_to  adjust_basket_item_quantity_path(item.id), :method => :delete, :class => 'qty qtyminus' do%>
+                          <i class="fa fa-minus fa-fw"></i>
+                      <% end %>
+                    </div>
+                    <div class="quantity-txt plusbtn">
+                      <%= link_to adjust_basket_item_quantity_path(item.id), :method => :post, :class => 'qty qtyplus' do %>
+                          <i class="fa fa-plus fa-fw"></i>
+                      <% end %>
+                    </div>
+                    <input readonly="true" type="number" class="quantity-input" name="p_quantity" value=<%=item.quantity%>>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 hidden-sm hidden-xs p-wr">
+            <div class="product-attrb-wr">
+              <div class="product-attrb">
+                <div class="price">
+                  <span class="t-price">
+                      <%= number_to_currency item.total %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 col-sm-2 col-xs-3 p-wr">
+            <div class="product-attrb-wr">
+              <div class="product-attrb">
+                <div class="remove">
+                  <%= link_to remove_basket_item_path(item), :method => :delete, :class => 'color2' do %>
+                      <i class="fa fa-trash-o fa-fw color2"></i>
+                  <% end %>
+                  <!--<a href="#a" class="color2" data-toggle="tooltip" data-original-title="Remove">-->
+                  <!--<i class="fa fa-trash-o fa-fw color2"></i>-->
+                  <!--</a>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="row clearfix f-space30"></div>
+<% end %>
+
+
+
+<div class="container">
+  <div class="row">
+    <!-- 	Estimate Shipping & Taxes -->
+    <div class="col-md-4  col-sm-4 col-xs-12 cart-box-wr">
+
+    </div>
+
+    <!-- end: Estimate Shipping & Taxes -->
+
+    <!-- 	Discount Codes -->
+
+    <div class="col-md-4  col-sm-4 col-xs-12 cart-box-wr">
+      <div class="box-content">
+        <div class="cart-box-tm">
+          <div class="tm1">
+            جمع کل
+          </div>
+          <div class="tm2">
+            <%= number_to_currency order.total_before_tax %>
+          </div>
+        </div>
+        <div class="clearfix f-space10"></div>
+        <div class="cart-box-tm">
+          <div class="tm1">
+            هزینه پیک
+          </div>
+          <div class="tm2">
+            <%= number_to_currency 0 %>
+          </div>
+        </div>
+        <div class="clearfix f-space10"></div>
+        <div class="cart-box-tm">
+          <div class="tm3 bgcolor2 " style="text-align: center">
+            <small style="text-align: center">
+              قابل پرداخت به همراه تخفیف
+            </small>
+          </div>
+          <div class="tm4 bgcolor2">
+            <%= number_to_currency order.total%>
+
+          </div>
+        </div>
+        <div class="clearfix f-space10  "></div>
+        <%= link_to  checkout_path, :class => 'btn large btn-block color1 pull-left' do %>
+        مشاهده فاکتور
+        <% end %>
+        <!--<button class="btn large color1 pull-right">Proceed to Checkout</button>-->
+        <div class="clearfix f-space30"></div>
+      </div>
+
+    </div>
+
+    <!-- end: Discount Codes -->
+
+    <!-- 	Total amount -->
+
+    <div class="col-md-4 col-sm-4 col-xs-12 cart-box-wr">
+
+    </div>
+    <!-- end: Total amount -->
+  </div>
+</div>
+
+
+<!--%td.quantity-->
+<!--- unless defined?(readonly)-->
+<!--%span-->
+<!--= link_to "+", adjust_basket_item_quantity_path(item.id), :method => :post, :class => 'ajax'-->
+<!--= link_to "-", adjust_basket_item_quantity_path(item.id), :method => :delete, :class => 'ajax'-->
+<!--= item.quantity-->
+<!--%td.product-->
+<!--= item.ordered_item.full_name-->
+<!--- unless defined?(readonly)-->
+<!--= link_to "Delete", remove_basket_item_path(item), :method => :delete, :class => 'delete ajax'-->
+<!--%td.money.price= number_to_currency item.sub_total-->
+<!--%td.money.tax= number_to_currency item.tax_amount-->
+<!--%td.money.total= number_to_currency item.total-->
+
+<!--- if order.delivery_service-->
+<!--%tr.delivery-->
+<!--%td.method{:colspan => 4}-->
+<!--- if defined?(readonly)-->
+<!--= order.delivery_service.name-->
+<!--- else-->
+<!--= form_tag change_delivery_service_path do-->
+<!--= select_tag 'delivery_service', options_from_collection_for_select(order.available_delivery_services, :id, :name, order.delivery_service.id)-->
+<!--%td.money= number_to_currency order.delivery_price-->
+<!--%tr.subtotal-->
+<!--%td{:colspan => 4} هزینه پیک-->
+<!--%td.money= number_to_currency 0-->
+<!--%tr.tax-->
+<!--%td{:colspan => 4}= "جمع کل"-->
+<!--%td.money= number_to_currency order.total_before_tax-->
+<!--%tr.total-->
+<!--%td{:colspan => 4} جمع کل قابل پرداخت به همراه تخفیف-->
+<!--%td.money= number_to_currency order.total-->
+<!--%div.button-->
+
+

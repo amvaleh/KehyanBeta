@@ -1,0 +1,45 @@
+<div class="box-heading"><span>دسته بندی ها</span></div>
+<!-- Categories -->
+<div class="box-content">
+  <div class="panel-group" id="blogcategories">
+    <% for category in Shoppe::ProductCategory.without_parent.order('created_at DESC')  %>
+        <div class="panel panel-default">
+          <div class="panel-heading closed" data-parent="#blogcategories" data-target= "#<%=category.id%>" data-toggle="collapse">
+            <h4 class="panel-title">
+              <!--<a href="#a">-->
+              <!--Men Wear -->
+              <!--</a>-->
+              <% if category.children.count > 0 %>
+                  <%= link_to  "#a" do %>
+                      <span class="fa fa-plus "></span>
+                      <%= category.name %>
+                  <% end %>
+              <% else %>
+                  <%= link_to products_path(category.permalink) do%>
+                      <span class="fa fa-external-link"></span>
+                      <%= category.name %>
+                  <% end %>
+              <% end %>
+              <small class="pull-right farsi">
+                <!--<%= category.children.count %>-->
+                <%= link_to "نمایش" , products_path(category.permalink), :class => "btn" %>
+              </small>
+            </h4>
+          </div>
+          <% if category.children.count > 0 %>
+              <div class="panel-collapse collapse" id=<%= category.id %> >
+                <div class="panel-body">
+                  <ul>
+                    <%= nice_nested_product_category_rows(category) %>
+                    <!--<li class="item"> <a href="#a">Jeans</a></li>-->
+                    <!--<li class="item"> <a href="#a">Shirts</a></li>-->
+                    <!--<li class="item"> <a href="#a">Shoes</a></li>-->
+                    <!--<li class="item"> <a href="#a">Sports Wear</a></li>-->
+                  </ul>
+                </div>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>

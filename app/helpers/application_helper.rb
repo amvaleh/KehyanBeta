@@ -1,9 +1,22 @@
 module ApplicationHelper
+
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
   
   def nested_product_category_spacing_adjusted_for_depth(category, relative_depth)
     depth = category.depth - relative_depth
     spacing = depth < 2 ? 0.8 : 1.5
-    ("<br><span style=' margin-right:#{40*spacing}px;'></span>"*category.depth).html_safe
+    ("<span style='margin-right:#{40*spacing}px;'></span>"*category.depth).html_safe
   end
 
   def nested_product_category_rows(category, current_category = nil, link_to_current = true, relative_depth = 0)
@@ -12,12 +25,12 @@ module ApplicationHelper
         category.children.order('created_at DESC').each do |child|
           if child == current_category
             if link_to_current == false
-              s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{child.name} (#{t('shoppe.product_category.nesting.current_category')})"
+              s << "<li>#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{child.name} (#{t('shoppe.product_category.nesting.current_category')})</li>"
             else
-              s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe} (#{t('shoppe.product_category.nesting.current_category')})"
+              s << "<li>#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe} (#{t('shoppe.product_category.nesting.current_category')})</li>"
             end
           else
-            s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe}"
+            s << "<li>#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe}</li>"
           end
           s << nested_product_category_rows(child, current_category, link_to_current, relative_depth)
           # s << "</div>"
@@ -97,7 +110,30 @@ module ApplicationHelper
     num = '**' + num + '**'
     return num
   end
-  
+
+
+  def nice_nested_product_category_rows(category, current_category = nil, link_to_current = true, relative_depth = 0)
+    if category.present? && category.children.count > 0
+      String.new.tap do |s|
+        category.children.order('created_at DESC').each do |child|
+          if child == current_category
+            if link_to_current == false
+              s << "<li class='item' >#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{child.name} (#{t('shoppe.product_category.nesting.current_category')})</li>"
+            else
+              s << "<li class='item'>#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe} (#{t('shoppe.product_category.nesting.current_category')})</li>"
+            end
+          else
+            s << "<li class='item'>#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe}</li>"
+          end
+          s << nested_product_category_rows(child, current_category, link_to_current, relative_depth)
+          # s << "</div>"
+        end
+      end.html_safe
+    else
+      ""
+    end
+  end
+
 
 
 end

@@ -1,0 +1,379 @@
+<%@page_title = 'نهایی کردن سفارش'%>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-title">
+        <h2 class="farsi">
+          نهایی کردن سفارش
+          <span>
+بسیار عالی! شما آماده اید تا سفارش خود را نهایی کنید، فقط اطلاعات زیر را تکمیل کنید تا ما خرید شما را آماده ارسال کنیم          .
+          </span></h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row clearfix f-space10"></div>
+
+<div class="container">
+  <!-- row -->
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @order, :url => checkout_path, :html => {:class => ' '} do |f| %>
+          <%= f.error_messages %>
+          </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9 col-sm-12 col-xs-12 main-column box-block">
+
+      <!-- Checkout Options -->
+      <div class="box-content checkout-op">
+        <div class="panel-group" id="checkout-options">
+
+          <!-- login and register panel -->
+          <div class="panel panel-default">
+            <div class="panel-heading opened collapsed" data-parent="#checkout-options" data-target="#op1" data-toggle="collapse">
+              <h4 class="panel-title farsi"> <a href="#a"> <span class="fa fa-shopping-cart"></span>
+                سبد خرید خود را مرور کنید
+              </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse" id="op1" style="height: 0px;">
+              <div class="panel-body ">
+                <div class="clearfix f-space10"></div>
+                <%= render 'shared/order_items_2', :order => @order %>
+              </div>
+            </div>
+          </div>
+
+          <!-- end: login and register panel -->
+
+          <!-- Billing Address panel -->
+
+          <div class="panel panel-default">
+            <div class="panel-heading closed collapsed" data-parent="#checkout-options" data-target="#op2" data-toggle="collapse">
+              <h4 class="panel-title farsi"> <a href="#a"> <span class="fa fa-map-marker"></span>
+آدرس پستی شما
+              </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse" id="op2" style="height: 0px;">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="clearfix f-space20"></div>
+
+                      <div class="col-md-6 col-xs-12">
+
+                        <%#= f.label :first_name, "نام و نام خانوادگی", :class => 'input4' %>
+                        <%= f.label :billing_address1, "اطلاعات زیر را با دقت تکمیل کنید", :class => 'req' %>
+                        <%= f.text_field :first_name, :placeholder => 'نام' , :class => 'input4' %>
+                        <%= f.text_field :last_name, :placeholder => 'نام خانوادگی' , :class => 'input4' %>
+
+                        <!--%dt= f.label :company, "نام مدرسه‌(اختیاری)"-->
+                        <%= f.text_field :company , :placeholder => "نام مدرسه(اختیاری)" ,:class => 'input4' %>
+                        <%= f.text_field :email_address , :placeholder=> "آدرس پست الکترونیکی" , :class=> "input4" %>
+
+                        <%if user_signed_in? %>
+                            <%= f.text_field :phone_number , :placeholder=>"شماره تماس تلفنی" ,  :class=> 'input4' , value: current_user.phone_number %>
+                        <%else %>
+                            <%= f.text_field :phone_number , :placeholder=>"شماره تماس تلفنی" , :class=> 'input4' %>
+                        <% end %>
+                      </div>
+                      <div class="col-md-6 col-xs-12">
+
+                        <%= f.label :billing_address1, "آدرس پستی دقیق", :class => 'req' %>
+                        <%= f.text_field :billing_address1, :placeholder => "خیابان اصلی"  , :class=> 'input4'%>
+                        <%= f.text_field :billing_address3, :placeholder => "خیابان فرعی" , :class=> 'input4'%>
+                        <%= f.text_field :billing_address4, :placeholder => "کوچه" , :class=> 'input4'%>
+                        <%= f.text_field :billing_postcode, :placeholder => "پلاک", :class => 'input4' %>
+                      </div>
+                        <div class="col-md-12">
+                      <%= f.submit "ثبت نهایی" , :class => "btn pull-right" , :style => "margin:2%;"%>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- end: Billing Address panel -->
+
+          <!--Shipping Address panel -->
+
+          <div class="panel panel-default">
+            <div class="panel-heading closed collapsed" data-parent="#checkout-options" data-target="#op3" data-toggle="collapse">
+              <h4 class="panel-title farsi">
+                <a href="#a">
+                  <span class="fa fa-warning"></span>
+                اگر می خواهی به آدرس دیگری بفرستی
+              </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse" id="op3" style="height: 0px;">
+              <div class="panel-body">
+
+                <div class="row co-row">
+
+                  <div class="clearfix f-space30"></div>
+
+                  <div class="col-md-12 col-xs-12">
+                    <div class="box-content form-box">
+
+                    <%= f.check_box :separate_delivery_address , :style => "height: 12px;"%>
+
+                                          می خواهم به آدرس زیر ارسال شود:
+
+                      (اختیاری)
+                      <%= f.text_field :delivery_name, :placeholder => "نام محل دریافتی" , :class => "input4" %>
+                      <%= f.text_field :delivery_address1, :placeholder => "خیابان اصلی" , :class => "input4" %>
+                      <%= f.text_field :delivery_address3, :placeholder => "خیابان فرعی", :class => "input4" %>
+                      <%= f.text_field :delivery_address4, :placeholder => "کوچه", :class => "input4" %>
+                      <%= f.text_field :delivery_postcode, :placeholder => "پلاک", :class => "input4" %>
+                      <%= f.submit "ثبت نهایی" , :class => "btn pull-right" , :style => "margin:2%;"%>
+
+                    </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="panel panel-default"> <!-- add class disabled to prevent from clicking -->
+            <div class="panel-heading closed collapsed" data-parent="#checkout-options" data-target="#op4" data-toggle="collapse">
+              <h4 class="panel-title farsi"> <a href="#a"> <span class="fa fa-truck"></span>
+                مرحله آخر
+              </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse" id="op4" style="height: 0px;">
+              <div class="panel-body">
+                <div class="row co-row">
+
+                  <!-- Shipping methods -->
+                  <div class="col-md-12 col-xs-12">
+                    <div class="box-content form-box">
+                      <h4 class="farsi">
+                        در صورتیکه از صحت اطلاعات تکمیل شده اطمینان دارید دکمه
+                      ثبت نهایی را انتخاب کنید
+                      </h4>
+                      <%= f.submit "ثبت نهایی" , :class => "btn medium color2 pull-right" , :style => "margin:2%;"%>
+      <% end %>
+                    </div>
+                  </div>
+                  <!-- end: Shipping methods -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- end: Checkout Options -->
+
+    </div>
+    <!-- side bar -->
+    <div class="col-md-3 col-sm-12 col-xs-12 box-block page-sidebar">
+      <div class="box-heading"><span>
+        فاکتور
+      </span></div>
+      <!-- Cart Summary -->
+      <div class="box-content cart-box-wr">
+        <div class="cart-box-tm">
+          <div class="tm1">
+            تعداد کالا
+          </div>
+          <div class="tm2">
+            <% @count = 0
+               @order.order_items.each do |o| %>
+                <% @count = @count + o.quantity %>
+            <% end %>
+            <%= @count %>
+          </div>
+        </div>
+        <div class="cart-box-tm">
+          <div class="tm1">
+            جمع کل
+          </div>
+          <div class="tm2">
+            <%= number_to_currency @order.total_before_tax %>
+          </div>
+        </div>
+        <div class="cart-box-tm">
+          <div class="tm1">
+            هزینه پیک
+          </div>
+          <div class="tm2">
+            <%= number_to_currency 0%>
+          </div>
+        </div>
+        <div class="cart-box-tm">
+          <div class="tm3 bgcolor2">
+            قابل پرداخت به همراه تخفیف
+          </div>
+          <div class="tm4 bgcolor2">
+            <%= number_to_currency @order.total%>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-heading"><span>مقایسه</span></div>
+      <!-- Compare -->
+      <div class="box-content">
+        <div class="compare">
+          <%= render "shared/compare" %>
+        </div>
+      </div>
+
+      <%= render 'shared/categories_side_panel' %>
+
+    </div>
+    <!-- end:sidebar -->
+  </div>
+  <!-- end:row -->
+</div>
+
+
+
+<div class="row clearfix f-space30"></div>
+<div class="row clearfix f-space30"></div>
+<div class="row clearfix f-space30"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner blue">
+        <div class="banner"> <i class="fa fa-thumbs-up"></i>
+          <h3>
+            ضمانت
+          </h3>
+          <p>
+            سلامت کتاب ها تضمین می شود
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner red">
+        <div class="banner"> <i class="fa fa-tags"></i>
+          <h3>
+            قیمت مناسب
+          </h3>
+          <p>
+            با تخفیف خوب، خرید خوب انجام دهید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner orange">
+        <div class="banner"> <i class="fa fa-headphones"></i>
+          <h3>پشتبانی همه روزی</h3>
+          <p>
+            ما هر آنچه می فروشیم را پشتیبانی می کنیم
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner lightblue">
+        <div class="banner"> <i class="fa fa-retweet"></i>
+          <h3>
+            مقایسه</h3>
+          <p>
+            کتاب ها را با هم مقایسه کنید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner darkblue">
+        <div class="banner"> <i class="fa fa-gift"></i>
+          <h3>
+            سورپرایز!
+          </h3>
+          <p>
+            برای دوستان خود خرید کنید!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner black">
+        <div class="banner"> <i class="fa fa-truck"></i>
+          <h3>
+            ارسال رایگان</h3>
+          <p>
+            هزینه ارسال رایگان است
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row clearfix f-space30"></div>
+<div class="row clearfix f-space30"></div>
+<div class="row clearfix f-space30"></div>
+
+<!--.checkout-->
+<!--%p.secure ارتباط امن-->
+<!--%h2 سفارش خود را نهایی کنید-->
+<!--%p.intro-->
+<!--بسیار عالی! شما آماده اید تا سفارش خود را نهایی کنید، فقط اطلاعات زیر را تکمیل کنید  تا ما خرید شما را آماده ارسال کنیم-->
+
+<!--%h3 سبد خرید خود را مرور کنید-->
+<!--= render 'shared/order_items', :order => @order-->
+
+<!--.btn.btn-warning= link_to "پرداخت", checkout_path, :class => 'checkout'-->
+<!--- unless @order.delivery_required? && @order.delivery_service.nil?-->
+<!--%h3 فورم زیر را به دقت تکمیل کنید تا سفارش شما نهایی شود-->
+
+<!--= form_for @order, :url => checkout_path, :html => {:class => 'checkout disableable'} do |f|-->
+<!--= f.error_messages-->
+<!--.customer-->
+<!--= field_set_tag do-->
+<!--%dl-->
+<!--%dt= f.label :first_name, "نام و نام خانوادگی", :class => 'req'-->
+<!--%dd.name-->
+<!--= f.text_field :first_name, :placeholder => 'نام'-->
+<!--= f.text_field :last_name, :placeholder => 'نام خانوادگی'-->
+<!--%dl-->
+<!--%dt= f.label :company, "نام مدرسه‌(اختیاری)"-->
+<!--%dd= f.text_field :company-->
+<!--%dl-->
+<!--%dt= f.label :email_address, 'آدرس پست الکترونیکی', :class => 'req'-->
+<!--%dd= f.text_field :email_address-->
+<!--%dl-->
+<!--%dt= f.label :phone_number, 'شماره تماس تلفنی', :class => 'req'-->
+<!---if user_signed_in?-->
+<!--%dd= f.text_field :phone_number , :class=> 'req' , value: current_user.phone_number-->
+<!---else-->
+<!--%dd= f.text_field :phone_number , :class=> 'req'-->
+<!--= field_set_tag do-->
+<!--%dl-->
+<!--%dt= f.label :billing_address1, "آدرس پستی دقیق", :class => 'req'-->
+<!--%dd= f.text_field :billing_address1, :placeholder => "خیابان اصلی"-->
+<!--%dd= f.text_field :billing_address3, :placeholder => "خیابان فرعی"-->
+<!--%dd= f.text_field :billing_address4, :placeholder => "کوچه"-->
+<!--%dd= f.text_field :billing_postcode, :placeholder => "پلاک", :class => 'postcode'-->
+<!---#%dd= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name-->
+<!--%dd-->
+<!--= f.check_box :separate_delivery_address-->
+<!--= f.label :separate_delivery_address, "آیا به آدرس دیگری می خواهید بفرستید؟"-->
+<!--%dl.delivery-->
+<!--%dt= f.label :delivery_address1, "آدرس دریافت سفارش", :class => 'req'-->
+<!--%dd= f.text_field :delivery_name, :placeholder => "نام محل دریافتی"-->
+<!--%dd= f.text_field :delivery_address1, :placeholder => "خیابان اصلی"-->
+<!--%dd= f.text_field :delivery_address3, :placeholder => "خیابان فرعی"-->
+<!--%dd= f.text_field :delivery_address4, :placeholder => "کوچه"-->
+<!--%dd= f.text_field :delivery_postcode, :placeholder => "پلاک", :class => 'postcode'-->
+<!---#%dd= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name-->
+
+<!--%p.submit= f.submit "ثبت نهایی" , :class => "btn btn-success btn-block"-->
+
+<!--- else-->
+<!--%p لطفا برای ایجاد این سفارش با ما تماس بگیرید .-->

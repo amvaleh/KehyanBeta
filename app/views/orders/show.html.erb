@@ -1,0 +1,97 @@
+<%@page_title = 'سبد خرید' %>
+
+<%= render 'shared/navbar' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-title">
+        <h2 class="farsi">
+          سبد خرید
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row clearfix f-space10"></div>
+<div class="container">
+<%= render 'shared/order_items', :order => current_order %>
+</div>
+<div class="row clearfix f-space30"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner blue">
+        <div class="banner"> <i class="fa fa-thumbs-up"></i>
+          <h3>
+            ضمانت
+          </h3>
+          <p>
+            سلامت کتاب ها تضمین می شود
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner red">
+        <div class="banner"> <i class="fa fa-tags"></i>
+          <h3>
+            قیمت مناسب
+          </h3>
+          <p>
+            با تخفیف خوب، خرید خوب انجام دهید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner orange">
+        <div class="banner"> <i class="fa fa-headphones"></i>
+          <h3>پشتبانی همه روزی</h3>
+          <p>
+            ما هر آنچه می فروشیم را پشتیبانی می کنیم
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner lightblue">
+        <div class="banner"> <i class="fa fa-retweet"></i>
+          <h3>
+            مقایسه</h3>
+          <p>
+            کتاب ها را با هم مقایسه کنید
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner darkblue">
+        <div class="banner"> <i class="fa fa-gift"></i>
+          <h3>
+            سورپرایز!
+          </h3>
+          <p>
+            برای دوستان خود خرید کنید!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+      <div class="rec-banner black">
+        <div class="banner"> <i class="fa fa-truck"></i>
+          <h3>
+            ارسال رایگان</h3>
+          <p>
+            هزینه ارسال رایگان است
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row clearfix f-space30"></div>
