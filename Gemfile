@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 gem 'rails', '4.2.0.beta2'
 gem 'rails-timeago', '~> 2.0'
 # gem 'will_paginate', '~> 3.0.6'
@@ -9,8 +9,8 @@ gem 'acts_as_commentable'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'mysql2'
 gem 'haml'
-#gem 'sass-rails', '5.0.0.beta1'
-gem 'sass-rails', github: 'rails/sass-rails'
+gem 'sass-rails', '5.0.0.beta1'
+# gem 'sass-rails', github: 'rails/sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails' , '3.0.4'
@@ -18,7 +18,7 @@ gem 'redcarpet'
 # gem 'devise'
 gem 'devise', '~> 3.4.0'
 gem 'faker'
-#gem 'shoppe' , :git => "http://github.com/amvaleh/myshoppe.git" 
+#gem 'shoppe' , :git => "http://github.com/amvaleh/myshoppe.git"
 #, :git => "http://github.com/amvaleh/shoppe.git"
 
 gem 'thin'

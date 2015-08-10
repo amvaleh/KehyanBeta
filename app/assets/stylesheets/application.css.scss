@@ -1,21 +1,17 @@
-/*
- *= require pagination
- *= require_self
- *= require normalize
- *= require bootstrap
- *= require bootstrap-rtl
- *= require iview
- *= require menu3d
- *= require animate
- *= require custom
- *= require rtl
- *= require style-switch
- *= require color
- *= require font-awesome
- */
 
 
-
+@import "normalize";
+@import "bootstrap";
+@import "bootstrap-rtl";
+@import "iview";
+@import "menu3d";
+@import "animate";
+@import "custom";
+@import "rtl";
+@import "style-switch";
+@import "color";
+@import "font-awesome";
+//= require_self
 
 @font-face {
   font-family: "BYekan";
