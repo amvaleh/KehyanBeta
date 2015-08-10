@@ -12,8 +12,8 @@
     -if @product2.present?
       %p.quantity= (link_to @product2.name , product_path(@product2.product_category.permalink, @product2.permalink))
     -else
-      %p.quantity خطا در سیستم، مورد مقایسه حذف شده است
+      .black_color خطا در سیستم، مورد مقایسه حذف شده است
   - if session[:object_one].nil? and session[:object_two].nil?
-    %p.empty <b>موردی در لیست مقایسه نمی باشد</b>
+    .black_color <b>موردی در لیست مقایسه نمی باشد</b>
   -elsif session[:object_one].present? and session[:object_two].present?
     = link_to "مشاهده", show_list_path , class: "btn color1 normal pull-right"

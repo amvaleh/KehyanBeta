@@ -1,4 +1,4 @@
-
+<%active_nav_item :catalogue %>
 <% @page_title = "جستجو" %>
 
 <%= render 'shared/navbar' %>
@@ -9,13 +9,15 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
       <div class="box-heading category-heading">
               <span>
-                نمایش نتایج جستجو برای
+                نمایش کالاهایی که
+                <%= params[:key] %>
                 &nbsp;
-                <%= params[:query] %>
+                <%= params[:value] %>
+                می باشد
               </span>
       </div>
 
-      <% if @result2.empty? and @result.empty? %>
+      <% if @products.empty? %>
           هیچ کالایی مطابق با جستجوی شما یافت نشد
       <% else %>
           <div class="box-content">
@@ -23,38 +25,15 @@
 
               <!-- Products Row -->
               <div class="row box-product">
-
-                <%=render 'shared/product_list', :products => @result.includes(:default_image) %>
-
+                <%= render 'shared/product_list', :products => @products %>
               </div>
               <!-- end: Products Row -->
             </div>
           </div>
-
-
-
-          <div class="col-md-12" style="text-align: center">
-            <%=paginate @result %>
-          </div>
-
-            <% @result2.each do |res| %>
-              <div class="col-md-12">
-              <%=image_tag "category.png" , style: "width: 20px !important" %>
-                <%= link_to(products_path(res.permalink), {:class => "li_link"}) do %>
-                    <p>
-
-                    <small class="black_color">دسته بندی</small>
-            <div class="black_color">
-            <%=res.name%>
-                    </div>
-                    </p>
-                <%end%>
-              </div>
-
-    <% end %>
-
-
-    <% end %>
+        <div class="col-md-12" style="text-align: center">
+          <%=paginate @products %>
+        </div>
+      <% end %>
     </div>
     <div class="col-md-3 col-sm-12 col-xs-12 box-block page-sidebar">
 
@@ -160,6 +139,4 @@
 </div>
 
 <div class="row clearfix f-space30"></div>
-
-
 

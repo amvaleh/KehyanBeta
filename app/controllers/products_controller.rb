@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   end
 
   def filter
-    @products = Shoppe::Product.active.with_attributes(params[:key].to_s, params[:value].to_s).page(params[:page]).per(6)
+    @products = Shoppe::Product.active.with_attributes(params[:key].to_s, params[:value].to_s).page(params[:page]).per(9)
   end
   
   def categories
