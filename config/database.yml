@@ -8,7 +8,7 @@ development:
   encoding: utf8
   database: ghasedak
   username: root
-  password: password
+  password:
   host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and

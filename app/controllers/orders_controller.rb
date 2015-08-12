@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
-  
+
   before_filter(:except => :status) { redirect_to root_path unless has_order? }
-  
+
   def status
     @order = Shoppe::Order.find_by_token!(params[:token])
   end
-  
+
   def destroy
     current_order.destroy
     session[:order_id] = nil
@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
       end
     end
   end
-  
+
   def remove_item
     item = current_order.order_items.find(params[:order_item_id])
     if current_order.order_items.count == 1
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
       end
     end
   end
-  
+
   def change_item_quantity
     item = current_order.order_items.find(params[:order_item_id])
     request.delete? ? item.decrease! : item.increase!
@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
           render :json => {:status => 'complete', :items => render_to_string(:partial => 'shared/order_items.html', :locals => {:order => current_order})}
         end
       end
-    end    
+    end
   rescue Shoppe::Errors::NotEnoughStock => e
     respond_to do |wants|
       wants.html { redirect_to request.referer, :alert => "Unfortunately, we don't have enough stock. We only have #{e.available_stock} items available at the moment. Please get in touch though, we're always receiving new stock." }
@@ -72,10 +72,10 @@ class OrdersController < ApplicationController
       end
     end
   end
-  
+
   def checkout
     @order = Shoppe::Order.find(current_order.id)
-    
+
     if request.patch?
       @order.attributes = params[:order].permit(:first_name, :last_name, :company, :billing_address1, :billing_address2, :billing_address3, :billing_address4, :billing_country_id, :billing_postcode, :email_address, :phone_number, :delivery_name, :delivery_address1, :delivery_address2, :delivery_address3, :delivery_address4, :delivery_postcode, :delivery_country_id, :separate_delivery_address)
       @order.ip_address = request.ip
@@ -97,20 +97,20 @@ class OrdersController < ApplicationController
       # @order.billing_postcode = Faker::Address.zip                                                  if @order.billing_postcode.blank?
     end
   end
-  
+
   def payment
     @order = Shoppe::Order.find(current_order.id)
     # if request.patch?
       redirect_to checkout_confirmation_path
     # end
   end
-  
+
   def confirmation
     unless current_order.confirming?
       redirect_to checkout_path
       return
     end
-    
+
     if request.patch?
       begin
         current_order.confirm!
@@ -118,6 +118,10 @@ class OrdersController < ApplicationController
         # we are adding a payment to the order straight away.
         #current_order.payments.create(:method => "Credit Card", :amount => current_order.total, :reference => rand(10000) + 10000, :refundable => true)
         session[:order_id] = nil
+        if current_order.phone_number.present?
+          send_sms("09361130770","سفارش جدید ثبت شد.")
+          send_sms(current_order.phone_number,"با تشکر. سفارش شما ثبت شد.")
+        end
         redirect_to root_path, :notice => "سفارش شما ثبت شد! قاصدک با شما تماس خواهد گرفت "
       rescue Shoppe::Errors::PaymentDeclined => e
         flash[:alert] = "Payment was declined by the bank. #{e.message}"
@@ -129,5 +133,5 @@ class OrdersController < ApplicationController
       end
     end
   end
-    
+
 end
